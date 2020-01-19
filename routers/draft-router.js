@@ -2,6 +2,7 @@ const express = require('express')
 const Cube = require('../models/cube-model')
 const User = require('../models/user-model')
 const authentication = require('../middleware/authentication')
+const { addUser, removeUser, getUsersInLobby } = require('../utils/users')
 const router = new express.Router()
 
 
@@ -64,6 +65,9 @@ router.post('/draft/create-draft', async (req, res) => {
         console.log("New WebSocket connection!")
 
         socket.emit('welcome')
+        socket.on('draftCard', (card_id) => {
+            console.log(card_id)
+        })
     })
 })
 
