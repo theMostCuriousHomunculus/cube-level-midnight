@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+
+        <table width="50%">
+            <tr class="header_row">
+                <th width="30%">User Name</th>
+                <th width="20%">Send Bud Request</th>
+            </tr>
+            {{#each matching_users}}
+            <tr>
+                <td>{{this.account_name}}</td>
+                <td>
+                    <form action="/users/send-bud-request" method="post">
+                        <input type="hidden" name="potential_bud_id" value={{this._id}}>
+                        <button type="submit">Send Bud Request</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+        <script src="/js/my-cubes.js"></script>
+    </body>
+</html>

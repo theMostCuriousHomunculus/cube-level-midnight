@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+
+        <h2>{{lobby_name}}</h2>
+
+        {{#each cards}}
+            <img src="{{this.image}}" height="285px">
+            {{#if this.back_image}}<img src={{this.back_image}} height="285px">{{/if}}
+        {{/each}}
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/draft-lobby.js"></script>
+    </body>
+</html>

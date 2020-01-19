@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+
+        <div id="draft_forms">
+            <form action="/draft/create-draft" method="post" autocomplete="off">
+                <h2>Create a New Draft!</h2>
+                <label for="draft_name">Draft Name: </label>
+                <input type="text" name="draft_name" id="draft_name" maxlength="30" autocomplete="off" required><br>
+                <label for="draft_password">Draft Password: </label>
+                <input type="text" name="draft_password" id="draft_password" autocomplete="off"><br>
+                {{!-- <label for="number_of_drafters">Number of Drafters: </label>
+                <input type="number" name="number_of_drafters" id="number_of_drafters" min="2" step="1" required><br> --}}
+                <label for="number_of_packs">Number of Packs: </label>
+                <input type="number" name="number_of_packs" id="number_of_packs" min="1" step="1" required><br>
+                <label for="cards_per_pack">Cards per Pack: </label>
+                <input type="number" name="cards_per_pack" id="cards_per_pack" min="2" step="1" required><br>
+                <label for="cube_to_draft">Cube to Draft: </label>
+                <select name="cube_to_draft" id="cube_to_draft" style="width: 21em;" onchange="getCubeComponents()" required>
+                    <option hidden disabled selected value> -- select a cube -- </option>
+                    {{#each cubes}}
+                        <option value={{this._id}}>{{this.cube_name}}</option>
+                    {{/each}}
+                </select><br>
+                Modules to Include:
+                <div id="module_checkboxes">
+                    <!-- modules will populate here when user makes a cube selection -->
+                </div>
+                <input type="submit" value="Start Draft!">
+            </form>
+
+            <form action="/draft/join-draft" method="" autocomplete="off">
+                <h2>Join a Lobby!</h2>
+                <label for="draft_to_join_name">Draft Name: </label>
+                <input type="text" name="draft_to_join_name" id="draft_to_join_name" maxlength="30" autocomplete="off" required><br>
+                <label for="draft_to_join_password">Draft Password: </label>
+                <input type="text" name="draft_to_join_password" id="draft_to_join_password" autocomplete="off" required>
+            </form>
+        </div>
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script src="/js/draft-home.js"></script>
+    </body>
+</html>

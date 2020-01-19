@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+
+        <h2>Howdy, {{account_name}}!</h2>
+
+        
+        <form action="/users/search-users" method="get">
+            Find a New Bud!<br>
+            <label for="account_name">Account Name: </label>
+            <input type="text" name="account_name" id="account_name" style="width: 21em;" autocomplete="off" required>
+            <input type="submit" value="Search!">
+        </form>
+
+        <div id="relationship_container">
+            <div>
+                <h3>Your Buds: </h3>
+                {{#each buds}}
+                    {{this.account_name}}
+                {{/each}}
+            </div>
+
+            <div>
+                <h3>Aspiring Buds: </h3>
+                {{#each aspiring_buds}}
+                    {{this.account_name}}
+                    <form action="/users/respond-bud-request" method="post">
+                        <input type="hidden" name="aspiring_bud_id" value={{this._id}}>
+                        <button type="submit" name="response" value="accept">Accept!</button>
+                        <button type="submit" name="response" value="reject">Reject!</button>
+                        <button type="submit" name="response" value="block">Block!</button>
+                    </form>
+                {{/each}}
+            </div>
+
+            <div>
+                <h3>Pending Buds: </h3>
+                {{#each pending_buds}}
+                    {{this.account_name}}
+                {{/each}}
+            </div>
+
+            <div>
+                <h3>Dicks: </h3>
+                {{#each dicks}}
+                    {{this.account_name}}
+                {{/each}}
+            </div>
+        </div>
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+        <script src="/js/my-cubes.js"></script>
+
+    </body>
+</html>
