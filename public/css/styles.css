@@ -12,10 +12,6 @@ body {
     margin: 0px;
 }
 
-button img {
-    padding: 0px;
-}
-
 input[type=submit] {
     padding: 3px 2px 3px 2px;
     margin: 5px 0px 5px 0px;
