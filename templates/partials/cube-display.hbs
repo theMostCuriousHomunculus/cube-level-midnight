@@ -1,0 +1,291 @@
+<div class="color_container" id="white_container">
+    <h2>White ({{white_cards.length}})</h2>
+    {{#each white_cards}}
+        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+            <img src="{{this.image}}" style="display: none;">
+            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+        </p>
+    {{/each}}
+</div>
+<div class="color_container" id="blue_container">
+    <h2>Blue ({{blue_cards.length}})</h2>
+    {{#each blue_cards}}
+        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+            <img src="{{this.image}}" style="display: none;">
+            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+        </p>
+    {{/each}}
+</div>
+<div class="color_container" id="black_container">
+    <h2>Black ({{black_cards.length}})</h2>
+    {{#each black_cards}}
+        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+            <img src="{{this.image}}" style="display: none;">
+            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+        </p>
+    {{/each}}
+</div>
+<div class="color_container" id="red_container">
+    <h2>Red ({{red_cards.length}})</h2>
+    {{#each red_cards}}
+        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+            <img src="{{this.image}}" style="display: none;">
+            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+        </p>
+    {{/each}}
+</div>
+<div class="color_container" id="green_container">
+    <h2>Green ({{green_cards.length}})</h2>
+    {{#each green_cards}}
+        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+            <img src="{{this.image}}" style="display: none;">
+            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+        </p>
+    {{/each}}
+</div>
+<div class="color_container" id="multicolor_container">
+    <h2>Multicolor ({{multicolor_count}})</h2>
+    <div>
+        <h3>Azorius ({{azorius_cards.length}})</h3>
+        {{#each azorius_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Boros ({{boros_cards.length}})</h3>
+        {{#each boros_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Dimir ({{dimir_cards.length}})</h3>
+        {{#each dimir_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Izzet ({{izzet_cards.length}})</h3>
+        {{#each izzet_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Golgari ({{golgari_cards.length}})</h3>
+        {{#each golgari_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Gruul ({{gruul_cards.length}})</h3>
+        {{#each gruul_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Orzhov ({{orzhov_cards.length}})</h3>
+        {{#each orzhov_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Rakdos ({{rakdos_cards.length}})</h3>
+        {{#each rakdos_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Selesnya ({{selesnya_cards.length}})</h3>
+        {{#each selesnya_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Simic ({{simic_cards.length}})</h3>
+        {{#each simic_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Abzan ({{abzan_cards.length}})</h3>
+        {{#each abzan_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Bant ({{bant_cards.length}})</h3>
+        {{#each bant_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Esper ({{esper_cards.length}})</h3>
+        {{#each esper_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Grixis ({{grixis_cards.length}})</h3>
+        {{#each grixis_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Jeskai ({{jeskai_cards.length}})</h3>
+        {{#each jeskai_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Jund ({{jund_cards.length}})</h3>
+        {{#each jund_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Mardu ({{mardu_cards.length}})</h3>
+        {{#each mardu_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Naya ({{naya_cards.length}})</h3>
+        {{#each naya_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Sultai ({{sultai_cards.length}})</h3>
+        {{#each sultai_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>Temur ({{temur_cards.length}})</h3>
+        {{#each temur_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>WUBR ({{WUBR_cards.length}})</h3>
+        {{#each WUBR_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>WUBG ({{WUBG_cards.length}})</h3>
+        {{#each WUBG_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>WURG ({{WURG_cards.length}})</h3>
+        {{#each WURG_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>WBRG ({{WBRG_cards.length}})</h3>
+        {{#each WBRG_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>UBRG ({{UBRG_cards.length}})</h3>
+        {{#each UBRG_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+    <div>
+        <h3>WUBRG ({{WUBRG_cards.length}})</h3>
+        {{#each WUBRG_cards}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    </div>
+</div>
+<div class="color_container" id="colorless_container">
+    <h2>Colorless ({{colorless_cards.length}})</h2>
+    {{#each colorless_cards}}
+        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+            <img src="{{this.image}}" style="display: none;">
+            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+        </p>
+    {{/each}}
+</div>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+
+        <form action="/blog/search" method="get" id="blog_search_form">
+            <label for="topic_search">Search Topics: </label>
+            <input type="text" name="topic_search" id="topic_search" style="width: 60em;" autocomplete="off">
+            <input type="submit" value="Search!">
+        </form>
+
+        {{#each posts}}
+            <h2><a href="/blog/article?article_id={{this._id}}">{{this.post_title}}</a></h2>
+            <h3 class="timestamp">{{this.createdAt}}</h3>
+        {{/each}}
+
+        {{!-- <form action="/blog/post" method="post">
+            <button type="submit">Post Article</button>
+        </form> --}}
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
+        <script src="/js/blog.js"></script>
+    </body>
+</html>

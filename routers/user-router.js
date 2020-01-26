@@ -1,0 +1,169 @@
+const express = require('express')
+const User = require('../models/user-model')
+const authentication = require('../middleware/authentication')
+const router = new express.Router()
+
+// New user registration
+router.post('/users/register', async (req, res) => {
+    
+    const user = new User(req.body)
+
+    try {
+        await user.save()
+        const token = await user.generateAuthToken()
+        res.cookie('auth_token', token)
+        res.status(201).redirect('/')
+    } catch(error) {
+        res.status(400).send(error)
+    }
+
+})
+
+// Existing user login
+router.post('/users/login', async (req, res) => {
+    try {
+        const user = await User.findByCredentials(req.body.email, req.body.password)
+        const token = await user.generateAuthToken()
+        res.cookie('auth_token', token)
+        res.redirect('/')
+    } catch (error) {
+        res.status(400).json({
+            error: error.message
+        })
+    }
+})
+
+// View profile
+router.get('/users/my-profile', authentication, async (req, res) => {
+    res.render('my-profile', {
+        account_name: req.user.account_name,
+        email: req.user.email,
+        title: "My Profile"
+    })
+})
+
+// Logout of single session
+router.post('/users/logout', authentication, async (req, res) => {
+    try {
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token !== req.cookies['auth_token']
+        })
+        await req.user.save()
+
+        res.redirect('/welcome.html')
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+// Logout of all sessions
+router.post('/users/logout-all', authentication, async (req, res) => {
+    try {
+        req.user.tokens = []
+        await req.user.save()
+
+        res.redirect('/welcome.html')
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+// view all the users you have a relationship with
+router.get('/users/my-buds', authentication, async (req, res) => {
+
+    const { buds, sent_bud_requests, received_bud_requests, blocked_users } = req.user
+    
+    const findRelatedUsers = new Promise(async (resolve, reject) => {
+        try {
+            buds.forEach(async function (bud) {
+                var user = await User.findById(bud._id)
+                bud.account_name = user.account_name
+            })
+            sent_bud_requests.forEach(async function (pendingBud) {
+                var user = await User.findById(pendingBud._id)
+                pendingBud.account_name = user.account_name
+            })
+            received_bud_requests.forEach(async function (aspiringBud) {
+                var user = await User.findById(aspiringBud._id)
+                aspiringBud.account_name = user.account_name
+            })
+            blocked_users.forEach(async function (dick) {
+                var user = await User.findById(dick._id)
+                dick.account_name = user.account_name
+            })
+            resolve({ buds, sent_bud_requests, received_bud_requests, blocked_users } )
+        } catch {
+            reject("Unable to retrieve buds.")
+        }
+    })
+    
+    findRelatedUsers.then((result) => {
+        res.render('my-buds', {
+            account_name: req.user.account_name,
+            buds: result.buds,
+            pending_buds: result.sent_bud_requests,
+            aspiring_buds: result.received_bud_requests,
+            dicks: result.blocked_users,
+            title: "My Buds"
+        })
+    }).catch((error) => {
+        res.render('my-buds', {
+            account_name: req.user.account_name,
+            title: "My Buds"
+        })
+        console.log(error)
+    })
+    
+})
+
+// search for a user to block or send a bud request to
+router.get('/users/search-users', authentication, async (req, res) => {
+
+    const matchingUsers = await User.find({ $text: { $search: req.query.account_name }, "blocked_users._id": { $ne: req.user._id } }, { score: { $meta: "textScore" } }).sort({ score: { $meta: "textScore" } })
+
+    res.render('user-search-results', {
+        matching_users: matchingUsers,
+        title: "User Search Results"
+    })
+})
+
+// block a user who has not tried to friend request you
+router.post('/users/block-user', authentication, async (req, res) => {
+    
+})
+
+// send another user a bud request
+router.post('/users/send-bud-request', authentication, async (req, res) => {
+
+    const potentialBud = await User.findById(req.body.potential_bud_id)
+    req.user.sent_bud_requests.push(req.body.potential_bud_id)
+    await req.user.save()
+    potentialBud.received_bud_requests.push(req.user._id)
+    await potentialBud.save()
+
+    res.redirect('/users/my-buds')
+})
+
+// respond to a bud request someone sent you
+router.post('/users/respond-bud-request', authentication, async (req, res) => {
+
+    const aspiringBud = await User.findById(req.body.aspiring_bud_id)
+    req.user.received_bud_requests.pull(req.user.received_bud_requests.id(req.body.aspiring_bud_id))
+    aspiringBud.sent_bud_requests.pull(aspiringBud.sent_bud_requests.id(req.user._id))
+
+    if (req.body.response == "accept") {
+        req.user.buds.push(req.body.aspiring_bud_id)
+        aspiringBud.buds.push(req.user._id)
+    } else if (req.body.response = "block") {
+        req.user.blocked_users.push(req.body.aspiring_bud_id)
+    } else {
+
+    }
+
+    await req.user.save()
+    await aspiringBud.save()
+
+    res.redirect('/users/my-buds')
+})
+
+module.exports = router

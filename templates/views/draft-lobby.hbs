@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+        {{#if message}}<meta http-equiv="refresh" content="4" />{{/if}}
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+
+        {{#if message}}<h2>{{message}}</h2>{{/if}}
+
+        {{#each cards}}
+            <button value={{this._id}} class="image_as_button" onclick="draftCard()">
+                <img src="{{this.image}}" height="285px">
+                {{#if this.back_image}}<img src={{this.back_image}} height="285px">{{/if}}
+            </button>
+        {{/each}}
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script src="/js/draft-lobby.js"></script>
+    </body>
+</html>

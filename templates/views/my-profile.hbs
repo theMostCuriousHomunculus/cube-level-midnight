@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+
+        <p>Account Name: {{account_name}}</p>
+        <p>Email: {{email}}</p>
+
+        <div>
+            <form action="/users/logout" method="post">
+                <button type="submit">Logout of This Session</button>
+            </form>
+        </div>
+
+        <div>
+            <form action="/users/logout-all" method="post">
+                <button type="submit">Logout of All Sessions</button>
+            </form>
+        </div>
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+    </body>
+</html>
