@@ -72,46 +72,35 @@ router.post('/users/logout-all', authentication, async (req, res) => {
 router.get('/users/my-buds', authentication, async (req, res) => {
 
     const { buds, sent_bud_requests, received_bud_requests, blocked_users } = req.user
-    
-    const findRelatedUsers = new Promise(async (resolve, reject) => {
-        try {
-            buds.forEach(async function (bud) {
-                var user = await User.findById(bud._id)
-                bud.account_name = user.account_name
-            })
-            sent_bud_requests.forEach(async function (pendingBud) {
-                var user = await User.findById(pendingBud._id)
-                pendingBud.account_name = user.account_name
-            })
-            received_bud_requests.forEach(async function (aspiringBud) {
-                var user = await User.findById(aspiringBud._id)
-                aspiringBud.account_name = user.account_name
-            })
-            blocked_users.forEach(async function (dick) {
-                var user = await User.findById(dick._id)
-                dick.account_name = user.account_name
-            })
-            resolve({ buds, sent_bud_requests, received_bud_requests, blocked_users } )
-        } catch {
-            reject("Unable to retrieve buds.")
-        }
+
+    // these for each functions will ensure the users' account names, rather than their user IDs, will be displayed
+    buds.forEach(async function (bud) {
+        var user = await User.findById(bud._id)
+        bud.account_name = user.account_name
     })
-    
-    findRelatedUsers.then((result) => {
-        res.render('my-buds', {
-            account_name: req.user.account_name,
-            buds: result.buds,
-            pending_buds: result.sent_bud_requests,
-            aspiring_buds: result.received_bud_requests,
-            dicks: result.blocked_users,
-            title: "My Buds"
-        })
-    }).catch((error) => {
-        res.render('my-buds', {
-            account_name: req.user.account_name,
-            title: "My Buds"
-        })
-        console.log(error)
+
+    sent_bud_requests.forEach(async function (pendingBud) {
+        var user = await User.findById(pendingBud._id)
+        pendingBud.account_name = user.account_name
+    })
+
+    received_bud_requests.forEach(async function (aspiringBud) {
+        var user = await User.findById(aspiringBud._id)
+        aspiringBud.account_name = user.account_name
+    })
+
+    blocked_users.forEach(async function (dick) {
+        var user = await User.findById(dick._id)
+        dick.account_name = user.account_name
+    })
+
+    res.render('my-buds', {
+        account_name: req.user.account_name,
+        buds: buds,
+        pending_buds: sent_bud_requests,
+        aspiring_buds: received_bud_requests,
+        dicks: blocked_users,
+        title: "My Buds"
     })
     
 })

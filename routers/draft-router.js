@@ -11,35 +11,18 @@ router.get('/draft', authentication, async (req, res) => {
     const cubes = await Cube.findByCreator(req.user._id)
     var buddies = req.user.buds
 
-    // this will display the user's account name, rather than their database ID, to the client
-    const findUsers = new Promise(async (resolve, reject) => {
-        try {
-            buddies.forEach(async function(bud) {
-                var user = await User.findById(bud._id)
-                bud.account_name = user.account_name
-            })
-            resolve(buddies)
-        } catch {
-            reject("Unable to render account names of your buds.")
-        }
+    buddies.forEach(async function(bud) {
+        var user = await User.findById(bud._id)
+        bud.account_name = user.account_name
     })
 
-    findUsers.then((result) => {
-        res.render('draft-home', {
-            buddies: result,
-            cubes: cubes,
-            title: "Create or Join a Draft!",
-            user_id: req.user._id
-        })
-    }).catch((error) => {
-        res.render('draft-home', {
-            buddies: buddies,
-            cubes: cubes,
-            title: "Create or Join a Draft!",
-            user_id: req.user._id
-        })
-        console.log(error)
+    res.render('draft-home', {
+        buddies: buddies,
+        cubes: cubes,
+        title: "Create or Join a Draft!",
+        user_id: req.user._id
     })
+
 })
 
 // currently just displays a random pack based on your selections; eventually this route should create a new draft
