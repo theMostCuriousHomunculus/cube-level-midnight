@@ -3,6 +3,7 @@ const { Cube } = require('../models/cube-model')
 const { Lobby } = require('../models/lobby-model')
 const User = require('../models/user-model')
 const authentication = require('../middleware/authentication')
+const asyncForEach = require('../utils/async-forEach')
 const router = new express.Router()
 
 // takes you to the draft homepage
@@ -11,7 +12,7 @@ router.get('/draft', authentication, async (req, res) => {
     const cubes = await Cube.findByCreator(req.user._id)
     var buddies = req.user.buds
 
-    buddies.forEach(async function(bud) {
+    await asyncForEach(buddies, async (bud) => {
         var user = await User.findById(bud._id)
         bud.account_name = user.account_name
     })

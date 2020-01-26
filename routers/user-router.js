@@ -1,6 +1,7 @@
 const express = require('express')
 const User = require('../models/user-model')
 const authentication = require('../middleware/authentication')
+const asyncForEach = require('../utils/async-forEach')
 const router = new express.Router()
 
 // New user registration
@@ -74,22 +75,22 @@ router.get('/users/my-buds', authentication, async (req, res) => {
     const { buds, sent_bud_requests, received_bud_requests, blocked_users } = req.user
 
     // these for each functions will ensure the users' account names, rather than their user IDs, will be displayed
-    buds.forEach(async function (bud) {
+    await asyncForEach(buds, async (bud) => {
         var user = await User.findById(bud._id)
         bud.account_name = user.account_name
     })
 
-    sent_bud_requests.forEach(async function (pendingBud) {
+    await asyncForEach(sent_bud_requests, async (pendingBud) => {
         var user = await User.findById(pendingBud._id)
         pendingBud.account_name = user.account_name
     })
 
-    received_bud_requests.forEach(async function (aspiringBud) {
+    await asyncForEach(received_bud_requests, async (aspiringBud) => {
         var user = await User.findById(aspiringBud._id)
         aspiringBud.account_name = user.account_name
     })
 
-    blocked_users.forEach(async function (dick) {
+    await asyncForEach(blocked_users, async (dick) => {
         var user = await User.findById(dick._id)
         dick.account_name = user.account_name
     })
