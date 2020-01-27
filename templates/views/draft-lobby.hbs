@@ -3,7 +3,7 @@
     <head>
         <title>Cube Level Midnight</title>
         <link href="/css/styles.css" type="text/css" rel="stylesheet" />
-        {{#if message}}<meta http-equiv="refresh" content="4" />{{/if}}
+        {{#if refresh}}<meta http-equiv="refresh" content="4" />{{/if}}
     </head>
     <body>
 
@@ -13,10 +13,19 @@
 
         {{#if message}}<h2>{{message}}</h2>{{/if}}
 
+        {{#if finished}}
+            {{#each selections}}
+                <div style="float: left;">
+                    <img src={{this.image}} height="285px" />
+                    {{#if this.back_image}}<img src={{this.back_image}} height="285px" />{{/if}}
+                </div>
+            {{/each}}
+        {{/if}}
+
         {{#each cards}}
-            <button value={{this._id}} class="image_as_button" onclick="draftCard()">
-                <img src="{{this.image}}" height="285px">
-                {{#if this.back_image}}<img src={{this.back_image}} height="285px">{{/if}}
+            <button value={{this._id}} data-card_name="{{this.name}}" class="image_as_button" onclick="draftCard()">
+                <img src={{this.image}} height="100%" />
+                {{#if this.back_image}}<img src={{this.back_image}} height="100%" />{{/if}}
             </button>
         {{/each}}
 

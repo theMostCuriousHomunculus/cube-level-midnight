@@ -147,7 +147,17 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
         }
     }
 
-    if (nextPack === 1) {
+    if (nextPack === 1 && lobby.drafters[drafterIndex].packs.length === 0) {
+        // the drafter has made all of his picks and can now begin to build his deck
+        res.render('draft-lobby', {
+            finished: true,
+            message: "Your picks:",
+            refresh: false,
+            selections: lobby.drafters[drafterIndex].picks,
+            title: lobby.lobby_name
+        })
+    } else if (nextPack === 1) {
+        // ready to start a new round of packs
         for (let i = 0; i < lobby.drafters.length; i++) {
             lobby.drafters[i].queue.shift()
             lobby.drafters[i].queue.push(lobby.drafters[i].packs[0])
@@ -156,17 +166,25 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
         await lobby.save()
         res.render('draft-lobby', {
             cards: lobby.drafters[drafterIndex].queue[0],
+            finished: false,
+            refresh: false,
             title: lobby.lobby_name
         })
     } else if (nextPack === 0 && lobby.drafters[drafterIndex].queue.length === 0) {
+        // the drafter who passes their pack to this drafter has not made a pick yet
         res.render('draft-lobby', {
             cards: [],
-            message: "Other drafters are still making their picks!  Please wait.",
+            finished: false,
+            message: "Other drafters are still making their picks.  Yell at them to hurry up!",
+            refresh: true,
             title: lobby.lobby_name
         })
     } else {
+        // there is a pack in the drafter's queue that they can go ahead and make a pick from
         res.render('draft-lobby', {
             cards: lobby.drafters[drafterIndex].queue[0],
+            finished: false,
+            refresh: false,
             title: lobby.lobby_name
         })
     }    

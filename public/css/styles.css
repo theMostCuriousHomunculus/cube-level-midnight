@@ -114,6 +114,12 @@ textarea {
     text-decoration: underline;
 }
 
+.image_as_button {
+    border: 0px;
+    height: 285px;
+    padding: 0px;
+}
+
 .lock {
     background-color: var(--primary-color);
     border: none;
