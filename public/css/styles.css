@@ -1,6 +1,6 @@
 :root {
-    --primary-color: rgb(127,0,255);
-    --secondary-color: rgb(95,255,95);
+    --primary-color: rgb(143, 31, 255);
+    --secondary-color: rgb(255,255,63);
 }
 
 a {
@@ -15,6 +15,7 @@ a {
 body {
     font-family: arial;
     margin: 0px;
+    height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -210,6 +211,12 @@ textarea {
     padding: 3px;
 }
 
+#cube_links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
 #draft_forms {
     border-color: var(--primary-color);
     border-radius: 5px;
@@ -248,15 +255,8 @@ textarea {
     padding: 3px;
 }
 
-#cube_links {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    text-align: center;
-}
-
 #footer {
     background-color: var(--primary-color);
-    bottom: 0px;
     clear: both;
     color: var(--secondary-color);
     height: 285px;
@@ -264,16 +264,31 @@ textarea {
     width: 100%;
 }
 
+#footer a {
+    padding: inherit;
+}
+
 #header {
     background-color: var(--secondary-color);
     clear: both;
-    height: 100px;
+    height: 120px;
+    padding: 0px;
+    margin: 0px;
     width: 100%;
-    padding: 10px 0px 0px 0px;
+}
+
+#header a {
+    float: right;
+    margin-top: 0px;
 }
 
 #header h1 {
     color: var(--primary-color);
+    font-size: 3em;
+    font-weight: 1000;
+    line-height: 25px;
+    margin-top: 0px;
+    padding-top: 10px;
 }
 
 #relationship_container {
