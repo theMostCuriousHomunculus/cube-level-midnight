@@ -12,6 +12,7 @@
         </div>
 
         {{>card_hover}}
+        {{>terminology}}
 
         <div id="cube_info">
             <form action="/cubes/edit-cube/change-cube-info" method="post" id="cube_info_form" onsubmit="event.preventDefault()">
@@ -64,14 +65,14 @@
 
             <form action="/cubes/edit-cube/add-module" method="post" id="add_module_form" autocomplete="off" onsubmit="submitAddModule()">
                 <input type="hidden" name="cube_id" value={{cube_id}}>
-                <label for="module_to_add">Create New Module: </label>
+                <label for="module_to_add"><i class="fas fa-info-circle" onmouseover="explainModules()" onmouseout="clearTerm()"></i> Create New Module: </label>
                 <input type="text" name="module_to_add" id="module_to_add" maxlength="30" required>
                 <input type="submit" value="Add it!">
             </form>
 
             <form action="/cubes/edit-cube/add-rotation" method="post" id="add_rotation_form" autocomplete="off" onsubmit="submitAddRotation()">
                 <input type="hidden" name="cube_id" value={{cube_id}}>
-                <label for="rotation_to_add">Create New Rotation: </label>
+                <label for="rotation_to_add"><i class="fas fa-info-circle" onmouseover="explainRotations()" onmouseout="clearTerm()"></i> Create New Rotation: </label>
                 <input type="text" name="rotation_to_add" id="rotation_to_add" maxlength="30" required>
                 <input type="submit" value="Add it!">
             </form>
@@ -186,8 +187,9 @@
         </div>
 
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script src="/js/form-submissions.js"></script>
         <script src="/js/image-preview.js"></script>
         <script src="/js/scryfall-requests-ajax.js"></script>
-        <script src="/js/form-submissions.js"></script>
+        <script src="/js/terminology.js"></script>
     </body>
 </html>

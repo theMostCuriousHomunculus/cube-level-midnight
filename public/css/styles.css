@@ -17,6 +17,11 @@ body {
     margin: 0px;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 input[type=submit] {
     padding: 3px 2px 3px 2px;
     margin: 5px 0px 5px 0px;
@@ -35,7 +40,9 @@ input[type=number] {
 }
 
 p {
-    text-indent: 2em;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-indent: 3em;
 }
 
 select {
@@ -110,8 +117,16 @@ textarea {
     font-family: inherit;
     font-size: inherit;
     outline: none;
-    padding: 10px;
+    padding: 10px !important;
     text-decoration: underline;
+}
+
+.fa-info-circle {
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    color: rgb(255,255,255);
+    font-size: inherit;
+    padding: 5px;
 }
 
 .image_as_button {
@@ -213,10 +228,15 @@ textarea {
     border-width: 2px;
     margin: 2px;
     padding: 3px;
+    position: relative;
 }
 
 #draft_forms form h2 {
     text-align: center;
+}
+
+#draft_forms form h3, input, label {
+    margin-left: 10px;
 }
 
 #existing_cubes {
@@ -278,6 +298,21 @@ textarea {
     border-width: 2px;
     margin: 9px 0px 0px 0px;
     padding: 5px;
+}
+
+#term_definition {
+    color: var(--primary-color);
+    margin: 10px;
+}
+
+#term_definition_container {
+    background-color: var(--secondary-color);
+    border-color: var(--primary-color);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    padding: 10px;
+    width: 25em;
 }
 
 #white_container {
