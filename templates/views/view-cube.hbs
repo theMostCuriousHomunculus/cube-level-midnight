@@ -13,14 +13,13 @@
         {{>card_hover}}
 
         <div id="cube_info">
+            {{#if creator_access}}
+                <a href="/cubes/edit-cube?cube_id={{cube_id}}&cube_component=main_board&limit=50&skip=0" style="float: right;">Edit this Cube!</a>
+            {{/if}}
             <h2>Cube Name: {{cube_name}}</h2>
             <h3>Cube Description: </h3>
             <p>{{cube_description}}</p>
         </div>
-
-        {{#if creator_access}}
-            <a href="/cubes/edit-cube?cube_id={{cube_id}}&cube_component=main_board">Edit this Cube!</a>
-        {{/if}}
 
         <form action="/cubes/view-cube" method="get" id="select_component_form">
             <strong>Currently Viewing {{component_name}}</strong><br>

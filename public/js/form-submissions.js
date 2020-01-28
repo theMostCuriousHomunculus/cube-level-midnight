@@ -2,6 +2,43 @@ function genericSubmit() {
     event.target.parentNode.submit()
 }
 
+function changeViewedComponent() {
+    
+    var { cube_id } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+    
+    window.location = '/cubes/edit-cube?cube_id=' + cube_id + '&cube_component=' + event.target.value + '&limit=50&skip=0'
+}
+
+function changeCardsPerPage() {
+    
+    var { cube_id, cube_component} = Qs.parse(location.search, { ignoreQueryPrefix: true })
+    limit = event.target.value
+    
+    window.location = '/cubes/edit-cube?cube_id=' + cube_id + '&cube_component=' + cube_component + '&limit=' + limit + '&skip=0'
+}
+
+function pageBack() {
+
+    var { cube_id, cube_component, limit, skip } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+    limit = parseInt(limit)
+    skip = parseInt(skip)
+
+    if (skip !== 0) {
+        window.location = '/cubes/edit-cube?cube_id=' + cube_id + '&cube_component=' + cube_component + '&limit=' + limit + '&skip=' + (skip - 1)
+    }
+}
+
+function pageForward(max_pages) {
+    
+    var { cube_id, cube_component, limit, skip } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+    limit = parseInt(limit)
+    skip = parseInt(skip)
+
+    if (skip !== max_pages - 1) {
+        window.location = '/cubes/edit-cube?cube_id=' + cube_id + '&cube_component=' + cube_component + '&limit=' + limit + '&skip=' + (skip + 1)
+    }
+}
+
 function submitAddModule() {    
     event.preventDefault()
     var form = document.getElementById("add_module_form")
@@ -77,9 +114,9 @@ function submitColorIdentityChange() {
         xhrFields: { withCredentials: true },
         data: {
             color_identity: colorIdentity,
-            cube_id: event.target.parentNode.firstElementChild.value,
-            card_id: event.target.parentNode.firstElementChild.nextElementSibling.value,
-            cube_component: event.target.parentNode.firstElementChild.nextElementSibling.nextElementSibling.value
+            cube_id: event.target.parentNode.children[0].value,
+            card_id: event.target.parentNode.children[1].value,
+            cube_component: event.target.parentNode.children[2].value
         }
     })
 }
@@ -88,6 +125,9 @@ function submitComponentChange() {
     var form = document.getElementById("rename_component_form")
     var selectedIndex = document.getElementById("cube_component").selectedIndex
     var componentType = document.getElementById("cube_component").children[selectedIndex].getAttribute("data-component_type")
+    var { limit, skip } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+    limit = parseInt(limit)
+    skip = parseInt(skip)
 
     jQuery.ajax({
         type: "POST",
@@ -101,7 +141,7 @@ function submitComponentChange() {
         },
         dataType: 'text json',
         success: function(result) {
-            window.location = '/cubes/edit-cube?cube_id=' + result.cube_id + '&cube_component=' + result.cube_component
+            window.location = '/cubes/edit-cube?cube_id=' + result.cube_id + '&cube_component=' + result.cube_component + '&limit=' + limit + '&skip=' + skip
         },
         error: function(e) {
             var responseJson = JSON.parse(e.responseText)

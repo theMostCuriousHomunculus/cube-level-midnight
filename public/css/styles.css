@@ -101,7 +101,7 @@ textarea {
     border-style: solid;
     border-width: 2px;
     float: left;
-    margin: 10px;
+    margin: 5px;
     overflow: hidden;
 }
 
@@ -138,11 +138,38 @@ textarea {
     text-indent: 0;
 }
 
+.fa-arrow-circle-left {
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    color: rgb(255,255,255);
+    cursor: pointer;
+    font-size: inherit;
+    padding: 5px;
+}
+
+.fa-arrow-circle-right {
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    color: rgb(255,255,255);
+    cursor: pointer;
+    font-size: inherit;
+    padding: 5px;
+}
+
 .fa-info-circle {
     background-color: var(--primary-color);
     border-radius: 100%;
     color: rgb(255,255,255);
     font-size: inherit;
+    padding: 5px;
+}
+
+.generic_form_container {
+    border-color: var(--primary-color);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    margin: 0px;
     padding: 5px;
 }
 
@@ -162,6 +189,18 @@ textarea {
     margin: 0px;
     padding: 5px 0px;
     width: 42%;
+}
+
+.pagination {
+    text-align: center;
+    margin: 5px;
+}
+
+.user_table {
+    font-size: 150%;
+    text-align: center;
+    text-indent: 0;
+    vertical-align: middle;
 }
 
 #add_card {
@@ -202,7 +241,7 @@ textarea {
     border-width: 2px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin: 9px 0px 0px 0px;
+    margin: 0px;
     padding: 5px;
 }
 
@@ -218,7 +257,7 @@ textarea {
 #cube_display {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    margin: 8px 0px 0px 0px;
+    margin: 0px;
 }
 
 #cube_info {
@@ -227,7 +266,7 @@ textarea {
     border-style: solid;
     border-width: 2px;
     line-height: 100%;
-    margin: 0px 0px 10px 0px;
+    margin: 0px;
     padding: 3px;
 }
 
@@ -331,7 +370,7 @@ textarea {
     border-radius: 5px;
     border-style: solid;
     border-width: 2px;
-    margin: 9px 0px 0px 0px;
+    margin: 0px;
     padding: 5px;
 }
 

@@ -15,6 +15,7 @@
         {{>terminology}}
 
         <div id="cube_info">
+            <a href="/cubes/view-cube?cube_id={{cube_id}}&cube_component=main_board" style="float: right;">Back to View Mode</a>
             <form action="/cubes/edit-cube/change-cube-info" method="post" id="cube_info_form" onsubmit="event.preventDefault()">
                 <input type="hidden" name="cube_id" value={{cube_id}}>
                 <label for="cube_name"><strong>Cube Name: </strong></label>
@@ -24,14 +25,11 @@
             </form>
         </div>
 
-        <a href="/cubes/view-cube?cube_id={{cube_id}}&cube_component=main_board">Back to View Mode</a>
-
         <div id="component_forms_container">
             <form action="/cubes/edit-cube" method="get" id="switch_component_form">
                 <strong>Currently Editing {{component_name}}</strong><br>
-                <input type="hidden" name="cube_id" value={{cube_id}}>
                 <label for="cube_component">Switch To: </label>
-                <select name="cube_component" id="cube_component" value={{cube_component}} style="width: 21em;" onchange="genericSubmit()">
+                <select name="cube_component" id="cube_component" value={{cube_component}} style="width: 21em;" onchange="changeViewedComponent()">
                     <option value="main_board" {{#if main_board_selected}}selected{{/if}}>Main Board</option>
                     {{!-- <option value="side_board">Side Board</option> --}}
                     {{#each modules}}
@@ -103,6 +101,8 @@
             <input type="submit" value="Add it!">
             <!-- the card's color identity will populate here -->
         </form>
+
+        {{>pagination}}
 
         <table width="100%">
             <tr class="header_row">
@@ -182,10 +182,13 @@
             {{/each}}
         </table>
 
+        {{>pagination}}
+
         <div id="footer">
             {{>footer}}
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
         <script src="/js/form-submissions.js"></script>
         <script src="/js/image-preview.js"></script>

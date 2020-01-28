@@ -126,6 +126,8 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
     var component_name
     var deleteOption = true
     var mainBoardSelected = false
+    var limit = parseInt(req.query.limit)
+    var skip = parseInt(req.query.skip)
 
     const displayComponent = new Promise((resolve, reject) => {
         
@@ -198,7 +200,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         return component
     }).then((result) => {
         res.render('edit-cube', {
-            component: alphabeticalSort(component),
+            component: alphabeticalSort(result).slice(limit*skip, limit*(1 + skip) - 1),
             component_name: component_name,
             cube_component: component_id,
             cube_description: req.cube.cube_description,
@@ -206,6 +208,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
             cube_name: req.cube.cube_name,
             delete_option: deleteOption,
             main_board_selected: mainBoardSelected,
+            max_pages: parseInt(component.length / limit) + 1,
             modules: req.cube.modules.sort(function (a, b) {
                 var nameA = a.module_name.toUpperCase()
                 var nameB = b.module_name.toUpperCase()
@@ -217,6 +220,10 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
                 }
                 return 0;
             }),
+            optionA: limit === 25,
+            optionB: limit === 50,
+            optionC: limit === 100,
+            page_number: skip + 1,
             rotations: req.cube.rotations.sort(function (a, b) {
                 var nameA = a.rotation_name.toUpperCase()
                 var nameB = b.rotation_name.toUpperCase()
@@ -333,7 +340,7 @@ router.post('/cubes/edit-cube/delete-component', creatorAccess, async (req, res)
         _id: req.body.cube_component
     })
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=main_board')
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=main_board&limit=50&skip=0')
 })
 
 // add a module to the cube
@@ -343,7 +350,7 @@ router.post('/cubes/edit-cube/add-module', creatorAccess, async (req, res) => {
     })
     await req.cube.save()
     var module_id = req.cube.modules[req.cube.modules.length - 1]._id
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + module_id)
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + module_id + '&limit=50&skip=0')
 })
 
 // add a rotation to the cube
@@ -355,7 +362,7 @@ router.post('/cubes/edit-cube/add-rotation', creatorAccess, async (req, res) => 
     await req.cube.save()
     // this returns the last subdocument's (rotation's) id in the array of rotations, since we used push to add the new rotation, the last subdocument id is the one we want
     var rotation_id = req.cube.rotations[req.cube.rotations.length - 1]._id
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + rotation_id)
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + rotation_id + '&limit=50&skip=0')
 })
 
 // add a card to a cube
@@ -414,7 +421,7 @@ router.post('/cubes/edit-cube/add-card', creatorAccess, async (req, res) => {
 
     component.push(card)
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id)
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id + '&limit=50&skip=0')
 })
 
 // change the color identity of a card in the cube
@@ -481,7 +488,7 @@ router.post('/cubes/edit-cube/change-set', creatorAccess, async (req, res) => {
     cardToChange.purchase_link = req.body.changed_purchase_link
     cardToChange.set = req.body.changed_printing
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id)
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id + '&limit=50&skip=0')
 })
 
 // move a card from one component of the cube to another or delete it from the cube entirely
@@ -515,7 +522,7 @@ router.post('/cubes/edit-cube/change-component', creatorAccess, async (req, res)
     }
 
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + current_component_id)
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + current_component_id + '&limit=50&skip=0')
 })
 
 module.exports = router

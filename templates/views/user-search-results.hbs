@@ -10,10 +10,10 @@
             {{>header}}
         </div>
 
-        <table width="50%">
+        <table width="100%">
             <tr class="header_row">
-                <th width="30%">User Name</th>
-                <th width="20%">Send Bud Request</th>
+                <th width="60%">User Name</th>
+                <th width="40%">Send Bud Request</th>
             </tr>
             {{#each matching_users}}
             <tr>
@@ -21,7 +21,9 @@
                     <div class="avatar_container" style="height: 100px; width: 100px;">
                         <img src={{this.avatar}} class="avatar">
                     </div>
-                    {{this.account_name}}
+                    <p class="user_table">
+                        {{this.account_name}}
+                    </p>
                 </td>
                 <td>
                     <form action="/users/send-bud-request" method="post">

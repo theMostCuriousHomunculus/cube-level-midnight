@@ -12,19 +12,21 @@
 
         <h2>Howdy, {{account_name}}!</h2>
 
-        
-        <form action="/users/search-users" method="get">
-            Find a New Bud!<br>
-            <label for="account_name">Account Name: </label>
-            <input type="text" name="account_name" id="account_name" style="width: 21em;" autocomplete="off" required>
-            <input type="submit" value="Search!">
-        </form>
+        <div class="generic_form_container">
+            <h3>Find a New Bud!</h3>
+            <form action="/users/search-users" method="get">
+                <label for="account_name">Account Name: </label>
+                <input type="text" name="account_name" id="account_name" style="width: 21em;" autocomplete="off" required>
+                <input type="submit" value="Search!">
+            </form>
+        </div>
 
         <div id="relationship_container">
             <div>
                 <table width="100%">
                     <tr class="header_row">
-                        <th>Your Buds</th>
+                        <th width="60%">Your Buds</th>
+                        <th width="40%">View Their Cubes</th>
                     </tr>
                     {{#each buds}}
                     <tr>
@@ -32,7 +34,15 @@
                             <div class="avatar_container" style="height: 100px; width: 100px;">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
-                            {{this.account_name}}
+                            <p class="user_table">
+                                {{this.account_name}}
+                            </p>
+                        </td>
+                        <td>
+                            {{#each this.cubes}}
+                                <a href="/cubes/view-cube?cube_id={{this._id}}&cube_component=main_board" style="width: fit-content; padding: 10px;">{{this.cube_name}}</a>
+                                <br>
+                            {{/each}}
                         </td>
                     </tr>
                     {{/each}}
@@ -51,7 +61,9 @@
                             <div class="avatar_container" style="height: 100px; width: 100px;">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
-                            {{this.account_name}}
+                            <p class="user_table">
+                                {{this.account_name}}
+                            </p>
                         </td>
                         <td>
                             <form action="/users/respond-bud-request" method="post">
@@ -77,7 +89,9 @@
                             <div class="avatar_container" style="height: 100px; width: 100px;">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
-                            {{this.account_name}}
+                            <p class="user_table">
+                                {{this.account_name}}
+                            </p>
                         </td>
                     </tr>
                     {{/each}}
@@ -96,7 +110,9 @@
                             <div class="avatar_container" style="height: 100px; width: 100px;">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
-                            {{this.account_name}}
+                            <p class="user_table">
+                                {{this.account_name}}
+                            </p>
                         </td>
                         <td>
                             <form action="/users/undick" method="post">

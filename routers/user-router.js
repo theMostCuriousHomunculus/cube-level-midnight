@@ -1,5 +1,6 @@
 const express = require('express')
 const User = require('../models/user-model')
+const { Cube } = require('../models/cube-model')
 const authentication = require('../middleware/authentication')
 const asyncForEach = require('../utils/async-forEach')
 const router = new express.Router()
@@ -86,8 +87,10 @@ router.get('/users/my-buds', authentication, async (req, res) => {
     // these for each functions will ensure the users' account names, rather than their user IDs, will be displayed
     await asyncForEach(buds, async (bud) => {
         var user = await User.findById(bud._id)
+        var cubes = await Cube.findByCreator(bud._id)
         bud.account_name = user.account_name
         bud.avatar = user.avatar
+        bud.cubes = cubes
     })
 
     await asyncForEach(sent_bud_requests, async (pendingBud) => {

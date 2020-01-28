@@ -1,0 +1,13 @@
+<div class="pagination">
+    <form action="/cubes/edit-cube" method="get" style="display: inline;">
+        <label>Cards Per Page: </label>
+        <select name="cards_per_page" style="width: 5em;" onchange="changeCardsPerPage()">
+            <option value="25" {{#if optionA}}selected{{/if}}>25</option>
+            <option value="50" {{#if optionB}}selected{{/if}}>50</option>
+            <option value="100" {{#if optionC}}selected{{/if}}>100</option>
+        </select>
+    </form>
+    <i class="fas fa-arrow-circle-left" onclick="pageBack()"></i>
+    {{page_number}}
+    <i class="fas fa-arrow-circle-right" onclick="pageForward('{{max_pages}}')"></i>
+</div>
