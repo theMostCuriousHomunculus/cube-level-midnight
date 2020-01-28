@@ -22,45 +22,97 @@
 
         <div id="relationship_container">
             <div>
-                <h3>Your Buds: </h3>
-                {{#each buds}}
-                    {{this.account_name}}
-                {{/each}}
+                <table width="100%">
+                    <tr class="header_row">
+                        <th>Your Buds</th>
+                    </tr>
+                    {{#each buds}}
+                    <tr>
+                        <td>
+                            <div class="avatar_container" style="height: 100px; width: 100px;">
+                                <img src={{this.avatar}} class="avatar">
+                            </div>
+                            {{this.account_name}}
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
             </div>
 
             <div>
-                <h3>Aspiring Buds: </h3>
-                {{#each aspiring_buds}}
-                    {{this.account_name}}
-                    <form action="/users/respond-bud-request" method="post">
-                        <input type="hidden" name="aspiring_bud_id" value={{this._id}}>
-                        <button type="submit" name="response" value="accept">Accept!</button>
-                        <button type="submit" name="response" value="reject">Reject!</button>
-                        <button type="submit" name="response" value="block">Block!</button>
-                    </form>
-                {{/each}}
+                <table width="100%">
+                    <tr class="header_row">
+                        <th width="60%">Aspiring Buds</th>
+                        <th width="40%">Respond</th>
+                    </tr>
+                    {{#each aspiring_buds}}
+                    <tr>
+                        <td>
+                            <div class="avatar_container" style="height: 100px; width: 100px;">
+                                <img src={{this.avatar}} class="avatar">
+                            </div>
+                            {{this.account_name}}
+                        </td>
+                        <td>
+                            <form action="/users/respond-bud-request" method="post">
+                                <input type="hidden" name="aspiring_bud_id" value={{this._id}}>
+                                <button type="submit" class="button_as_link" name="response" value="accept">Accept!</button>
+                                <button type="submit" class="button_as_link" name="response" value="reject">Reject!</button>
+                                <button type="submit" class="button_as_link" name="response" value="block">Block!</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
             </div>
 
             <div>
-                <h3>Pending Buds: </h3>
-                {{#each pending_buds}}
-                    {{this.account_name}}
-                {{/each}}
+                <table width="100%">
+                    <tr class="header_row">
+                        <th>Pending Buds</th>
+                    </tr>
+                    {{#each pending_buds}}
+                    <tr>
+                        <td>
+                            <div class="avatar_container" style="height: 100px; width: 100px;">
+                                <img src={{this.avatar}} class="avatar">
+                            </div>
+                            {{this.account_name}}
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
             </div>
 
             <div>
-                <h3>Dicks: </h3>
-                {{#each dicks}}
-                    {{this.account_name}}
-                {{/each}}
+                <table width="100%">
+                    <tr class="header_row">
+                        <th width="60%">Dicks</th>
+                        <th width="40%">Un-dick</th>
+                    </tr>
+                    {{#each dicks}}
+                    <tr>
+                        <td>
+                            <div class="avatar_container" style="height: 100px; width: 100px;">
+                                <img src={{this.avatar}} class="avatar">
+                            </div>
+                            {{this.account_name}}
+                        </td>
+                        <td>
+                            <form action="/users/undick" method="post">
+                                <input type="hidden" name="dick_id" value={{this._id}}>
+                                <input type="submit" class="button_as_link" value="Un-Dick!" />
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </table>
             </div>
         </div>
 
         <div id="footer">
             {{>footer}}
         </div>
-
-        <script src="/js/my-cubes.js"></script>
 
     </body>
 </html>

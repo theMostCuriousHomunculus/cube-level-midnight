@@ -38,6 +38,7 @@ router.post('/users/login', async (req, res) => {
 router.get('/users/my-profile', authentication, async (req, res) => {
     res.render('my-profile', {
         account_name: req.user.account_name,
+        avatar: req.user.avatar,
         email: req.user.email,
         title: "My Profile"
     })
@@ -69,6 +70,14 @@ router.post('/users/logout-all', authentication, async (req, res) => {
     }
 })
 
+// change the user's avatar
+router.post('/users/change-avatar', authentication, async (req, res) => {
+
+    req.user.avatar = req.body.image
+    await req.user.save()
+    res.redirect('/users/my-profile')
+})
+
 // view all the users you have a relationship with
 router.get('/users/my-buds', authentication, async (req, res) => {
 
@@ -78,21 +87,25 @@ router.get('/users/my-buds', authentication, async (req, res) => {
     await asyncForEach(buds, async (bud) => {
         var user = await User.findById(bud._id)
         bud.account_name = user.account_name
+        bud.avatar = user.avatar
     })
 
     await asyncForEach(sent_bud_requests, async (pendingBud) => {
         var user = await User.findById(pendingBud._id)
         pendingBud.account_name = user.account_name
+        pendingBud.avatar = user.avatar
     })
 
     await asyncForEach(received_bud_requests, async (aspiringBud) => {
         var user = await User.findById(aspiringBud._id)
         aspiringBud.account_name = user.account_name
+        aspiringBud.avatar = user.avatar
     })
 
     await asyncForEach(blocked_users, async (dick) => {
         var user = await User.findById(dick._id)
         dick.account_name = user.account_name
+        dick.avatar = user.avatar
     })
 
     res.render('my-buds', {
@@ -153,6 +166,15 @@ router.post('/users/respond-bud-request', authentication, async (req, res) => {
     await req.user.save()
     await aspiringBud.save()
 
+    res.redirect('/users/my-buds')
+})
+
+// remove a user from one's dick list
+router.post('/users/undick', authentication, async (req, res) => {
+
+    req.user.blocked_users.pull(req.body.dick_id)
+
+    await req.user.save()
     res.redirect('/users/my-buds')
 })
 

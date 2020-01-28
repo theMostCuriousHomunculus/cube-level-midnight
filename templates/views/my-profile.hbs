@@ -10,8 +10,26 @@
             {{>header}}
         </div>
 
+        <div class="avatar_container" style="height: 150px; width: 150px;">
+            <img src={{avatar}} class="avatar">
+        </div>
+
         <p>Account Name: {{account_name}}</p>
         <p>Email: {{email}}</p>
+
+        <form action="/users/change-avatar" method="post" id="change_avatar" autocomplete="off" onsubmit="submitChangeAvatar()">
+            <label for="card_to_search">Change Card Image Avatar: </label>
+            <input type="text" name="card_to_search" id="card_to_search" list="card_results" style="width: 21em;" onkeyup="scryfallCardSearch()" onchange="scryfallPrintSearch()" required>
+            <datalist id="card_results">
+            <!-- the search results from scryfall will populate here -->
+            </datalist>
+            <label for="selected_printing">Printing: </label>
+            <select name="selected_printing" id="selected_printing" style="width: 5em;" required>
+            <!-- the available printings will populate here -->
+            </select>
+            <input type="hidden" name="image" id="image">
+            <input type="submit" value="Change My Avatar!">
+        </form>
 
         <div>
             <form action="/users/logout" method="post">
@@ -29,5 +47,7 @@
             {{>footer}}
         </div>
 
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script src="/js/my-profile.js"></script>
     </body>
 </html>

@@ -17,11 +17,16 @@
             </tr>
             {{#each matching_users}}
             <tr>
-                <td>{{this.account_name}}</td>
+                <td>
+                    <div class="avatar_container" style="height: 100px; width: 100px;">
+                        <img src={{this.avatar}} class="avatar">
+                    </div>
+                    {{this.account_name}}
+                </td>
                 <td>
                     <form action="/users/send-bud-request" method="post">
                         <input type="hidden" name="potential_bud_id" value={{this._id}}>
-                        <button type="submit">Send Bud Request</button>
+                        <input type="submit" class="button_as_link" value="Send Bud Request">
                     </form>
                 </td>
             </tr>

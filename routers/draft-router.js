@@ -15,6 +15,7 @@ router.get('/draft', authentication, async (req, res) => {
     await asyncForEach(buddies, async (bud) => {
         var user = await User.findById(bud._id)
         bud.account_name = user.account_name
+        bud.avatar = user.avatar
     })
 
     res.render('draft-home', {

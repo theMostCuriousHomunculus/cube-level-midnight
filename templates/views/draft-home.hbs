@@ -29,8 +29,12 @@
                 <h3>Buds to Include: </h3>
                 <div id="bud_ceckboxes">
                     {{#each buddies}}
+                        <div class="avatar_container" style="height: 100px; width: 100px;">
+                            <img src={{this.avatar}} class="avatar">
+                        </div>
                         <input type="checkbox" id={{this._id}} name="buds[]" value={{this._id}}>
-                        <label for={{this._id}}>{{this.account_name}}</label><br>
+                        <label for={{this._id}}>{{this.account_name}}</label>
+                        <br style="clear: left;">
                     {{/each}}
                 </div>
                 <h3>Modules to Include: </h3>
