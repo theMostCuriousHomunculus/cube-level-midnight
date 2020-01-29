@@ -55,13 +55,12 @@ input[type=text] {
 p {
     margin-left: 10px;
     margin-right: 10px;
-    padding: 3px;
     text-indent: 3em;
 }
 
 select {
     padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 0px;
+    margin: 10px;
 }
 
 table {
@@ -74,6 +73,10 @@ table a {
     padding: 5px 0px 5px 0px;
     text-align: center;
     width: 100%;
+}
+
+table select {
+    margin: 5px;
 }
 
 table th {
@@ -142,11 +145,8 @@ textarea {
 }
 
 .color_container p {
-    border-width: 0px;
     cursor: default;
-    display: block;
     margin: 1px;
-    padding: 3px;
     text-indent: 0;
 }
 
@@ -187,6 +187,7 @@ textarea {
 
 .image_as_button {
     border: 0px;
+    cursor: pointer;
     height: 285px;
     padding: 0px;
 }
@@ -244,33 +245,6 @@ textarea {
     vertical-align: middle;
 }
 
-#add_card {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    margin: 0px;
-    padding: 5px;
-}
-
-#add_component_form {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    margin: 0px;
-    padding: 5px;
-}
-
-#blog_search_form {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    margin: 0px;
-    padding: 5px;
-}
-
 #change_avatar {
     clear: left;
 }
@@ -284,15 +258,6 @@ textarea {
     grid-template-columns: repeat(2, 1fr);
     margin: 0px;
     padding: 5px;
-}
-
-#create_cube {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    margin: 2px;
-    padding: 3px;
 }
 
 #cube_display {
@@ -317,13 +282,16 @@ textarea {
     text-align: center;
 }
 
-#existing_cubes {
-    border-color: var(--secondary-color);
-    border-radius: 5px;
+#draft_lobby_main_content {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+#draft_lobby_main_content div {
+    border-color: var(--primary-color);
+    border-radius: 10px;
     border-style: solid;
     border-width: 2px;
-    margin: 2px;
-    padding: 3px;
 }
 
 #footer {
@@ -337,6 +305,10 @@ textarea {
 
 #footer a {
     padding: inherit;
+}
+
+#footer p {
+    text-indent: 0;
 }
 
 #header {

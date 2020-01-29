@@ -10,18 +10,16 @@
             {{>header}}
         </div>
 
-        <div id="create_cube">
+        <form action="/cubes/create" method="post" class="generic_form_container">
             <h2>Create a new cube!</h2>
-            <form action="/cubes/create" method="post">
-                <label for="cube_name">Cube Name: </label>
-                <input type="text" name="cube_name" id="cube_name" required autocomplete="off" maxlength="30" style="width: 21em;"><br>
-                <label for="cube_description">Cube Description: </label>
-                <textarea name="cube_description" id="cube_description" autocomplete="off" maxlength="300" rows="5" cols="60"></textarea>
-                <input type="submit" value="Create This Cube!">
-            </form>
-        </div>
+            <label for="cube_name">Cube Name: </label>
+            <input type="text" name="cube_name" id="cube_name" required autocomplete="off" maxlength="30" style="width: 21em;"><br>
+            <label for="cube_description">Cube Description: </label>
+            <textarea name="cube_description" id="cube_description" autocomplete="off" maxlength="300" rows="5" cols="60"></textarea>
+            <input type="submit" value="Create This Cube!">
+        </form>
 
-        <div id="existing_cubes">
+        <div class="generic_form_container">
             <h2>Existing Cubes:</h2>
             <div id="cube_links">
             {{#each cubes}}

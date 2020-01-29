@@ -137,6 +137,12 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
 
     const drafterIndex = drafters.indexOf(req.query.user_id)
 
+    await asyncForEach(lobby.drafters, async (drafter) => {
+        var user = await User.findById(drafter.drafter_id)
+        drafter.account_name = user.account_name
+        drafter.avatar = user.avatar
+    })
+
     // check to see if the lobby is ready for the next pack or if at least one drafter still needs to make a pick
     let nextPack = 1
 
@@ -151,6 +157,7 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
     if (nextPack === 1 && lobby.drafters[drafterIndex].packs.length === 0) {
         // the drafter has made all of his picks and can now begin to build his deck
         res.render('draft-lobby', {
+            drafters: lobby.drafters,
             finished: true,
             message: "Your picks:",
             refresh: false,
@@ -167,7 +174,9 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
         await lobby.save()
         res.render('draft-lobby', {
             cards: lobby.drafters[drafterIndex].queue[0],
+            drafters: lobby.drafters,
             finished: false,
+            message: "Choose a card!",
             refresh: false,
             title: lobby.lobby_name
         })
@@ -175,6 +184,7 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
         // the drafter who passes their pack to this drafter has not made a pick yet
         res.render('draft-lobby', {
             cards: [],
+            drafters: lobby.drafters,
             finished: false,
             message: "Other drafters are still making their picks.  Yell at them to hurry up!",
             refresh: true,
@@ -184,7 +194,9 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
         // there is a pack in the drafter's queue that they can go ahead and make a pick from
         res.render('draft-lobby', {
             cards: lobby.drafters[drafterIndex].queue[0],
+            drafters: lobby.drafters,
             finished: false,
+            message: "Choose a card!",
             refresh: false,
             title: lobby.lobby_name
         })

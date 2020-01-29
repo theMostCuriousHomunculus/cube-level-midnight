@@ -24,7 +24,7 @@
         <form action="/cubes/view-cube" method="get" id="select_component_form">
             <strong>Currently Viewing {{component_name}}</strong><br>
             <input type="hidden" name="cube_id" value={{cube_id}}>
-            <label for="cube_component">Switch To: </label>
+            <label for="cube_component">Switch To:</label>
             <select name="cube_component" value={{cube_component}} style="width: 30em;" onchange="genericSubmit()">
                 <option value="main_board" {{#if main_board_selected}}selected{{/if}}>Main Board</option>
                 {{!-- <option value="side_board">Side Board</option> --}}
