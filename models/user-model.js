@@ -7,10 +7,13 @@ const jwt = require('jsonwebtoken')
 const userSchema = new mongoose.Schema({
     account_name: {
         type: String,
-        unique: true,
         required: true,
         trim: true,
-        maxlength: 30
+        maxlength: 30,
+        index: {
+            unique: true,
+            collation: { locale: 'en', strength: 2 }
+        }
     },
     avatar: {
         type: String
@@ -19,12 +22,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 7,
-        trim: true,
-        validate(value) {
-            if (value.toLowerCase().includes('password')) {
-                throw new Error('Password cannot contain the string "password".')
-            }
-        }
+        trim: true
     },
     email: {
         type: String,

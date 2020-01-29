@@ -54,6 +54,13 @@ app.get('/', authentication, async (req, res) => {
     })
 })
 
+// render the welcome page
+app.get('/welcome', async (req, res) => {
+    res.render('welcome', {
+        title: "Welcome"
+    })
+})
+
 app.use(cubeRouter)
 app.use(userRouter)
 app.use(blogRouter)

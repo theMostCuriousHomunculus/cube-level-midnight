@@ -23,12 +23,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 10px;
 }
 
-input[type=submit] {
-    padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 0px;
-}
-
-input[type=text] {
+input[type=email] {
     padding: 3px 2px 3px 2px;
     margin: 5px 0px 5px 0px;
     width: 21em;
@@ -40,16 +35,33 @@ input[type=number] {
     width: 5em;
 }
 
+input[type=password] {
+    padding: 3px 2px 3px 2px;
+    margin: 5px 0px 5px 0px;
+    width: 15em;
+}
+
+input[type=submit] {
+    padding: 3px 2px 3px 2px;
+    margin: 5px 0px 5px 0px;
+}
+
+input[type=text] {
+    padding: 3px 2px 3px 2px;
+    margin: 5px 0px 5px 0px;
+    width: 21em;
+}
+
 p {
     margin-left: 10px;
     margin-right: 10px;
+    padding: 3px;
     text-indent: 3em;
 }
 
 select {
     padding: 3px 2px 3px 2px;
     margin: 5px 0px 5px 0px;
-    width: 21em;
 }
 
 table {
@@ -196,6 +208,35 @@ textarea {
     margin: 5px;
 }
 
+.two_column_grid {
+    border-color: var(--primary-color);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 2px;
+    padding: 3px;
+}
+
+.two_column_grid form {
+    border-color: var(--secondary-color);
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    margin: 2px;
+    padding: 3px;
+    position: relative;
+}
+
+.two_column_grid form h2 {
+    text-align: center;
+}
+
+.two_column_grid form h3, input, label {
+    margin-left: 10px !important;
+}
+
 .user_table {
     font-size: 150%;
     text-align: center;
@@ -274,35 +315,6 @@ textarea {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     text-align: center;
-}
-
-#draft_forms {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 2px;
-    padding: 3px;
-}
-
-#draft_forms form {
-    border-color: var(--secondary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    margin: 2px;
-    padding: 3px;
-    position: relative;
-}
-
-#draft_forms form h2 {
-    text-align: center;
-}
-
-#draft_forms form h3, input, label {
-    margin-left: 10px;
 }
 
 #existing_cubes {

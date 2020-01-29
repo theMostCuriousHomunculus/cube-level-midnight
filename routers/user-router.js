@@ -5,6 +5,20 @@ const authentication = require('../middleware/authentication')
 const asyncForEach = require('../utils/async-forEach')
 const router = new express.Router()
 
+// see if a username is available
+router.post('/users/check-username-availability', async (req, res) => {
+    const nameTaken = await User.findOne({ account_name: req.body.account_name }).collation({ locale: 'en', strength: 2 })
+    const emailAlreadyRegistered = await User.findOne({ email: req.body.email })
+
+    if (nameTaken) {
+        res.status(406).send("That username is already taken!  Try a different one.")
+    } else if (emailAlreadyRegistered) {
+        res.status(406).send("There is already an account registered to that email address!")
+    } else {
+        res.status(202).send()
+    }
+})
+
 // New user registration
 router.post('/users/register', async (req, res) => {
     
@@ -53,7 +67,7 @@ router.post('/users/logout', authentication, async (req, res) => {
         })
         await req.user.save()
 
-        res.redirect('/welcome.html')
+        res.redirect('/welcome')
     } catch (e) {
         res.status(500).send()
     }
@@ -65,7 +79,7 @@ router.post('/users/logout-all', authentication, async (req, res) => {
         req.user.tokens = []
         await req.user.save()
 
-        res.redirect('/welcome.html')
+        res.redirect('/welcome')
     } catch (e) {
         res.status(500).send()
     }

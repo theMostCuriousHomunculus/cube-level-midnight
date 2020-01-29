@@ -14,7 +14,7 @@ const authentication = async (req, res, next) => {
         req.user = user
         next()
     } catch (e) {
-        res.redirect('welcome.html')
+        res.redirect('/welcome')
     }
 }
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+        
+        <h1>Cube Level Midnight</h1>
+        <p>A website for managing and drafting your Magic the Gathering cube with your buds!</p>
+
+        <div class="two_column_grid">
+            <form action="/users/register" method="post" id="register_form" onsubmit="validateInfo()">
+                <h2>Create An Account</h2>
+                <label for="account_name" style="display: block;">Account Name:</label>
+                <input type="text" name="account_name" id="account_name"  style="display: block;" maxlength="30" required autocomplete="off">
+                <label for="email" style="display: block;">Email Address:</label>
+                <input type="email" name="email" id="email"  style="display: block;" required autocomplete="off">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password"  style="display: block;" required>
+                <label for="confirm_password" style="display: block;">Confirm Password:</label>
+                <input type="password" name="confirm_password" id="confirm_password"  style="display: block;" required>
+                <button type="submit" class="button_as_link" style="position: absolute; bottom: 0; right: 0; margin: 5px;">Sign Up!</button>
+            </form>
+                
+            <form action="/users/login" method="post">
+                <h2>Login</h2>
+                <label for="login_email">Email:</label>
+                <input type="email" name="email" id="login_email" required autocomplete="off">
+                <label for="login_password">Password:</label>
+                <input type="password" name="password" id="login_password" required>
+                <button type="submit" class="button_as_link" style="position: absolute; bottom: 0; right: 0; margin: 5px;">Sign In!</button>
+            </form>
+        </div>
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script src="/js/welcome.js"></script>
+    </body>
+</html>
