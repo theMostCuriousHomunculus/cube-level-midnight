@@ -12,7 +12,7 @@
 
         {{>card_hover}}
 
-        <div id="cube_info">
+        <div class="generic_container">
             {{#if creator_access}}
                 <a href="/cubes/edit-cube?cube_id={{cube_id}}&cube_component=main_board&limit=50&skip=0" style="float: right;">Edit this Cube!</a>
             {{/if}}
@@ -21,8 +21,8 @@
             <p>{{cube_description}}</p>
         </div>
 
-        <form action="/cubes/view-cube" method="get" id="select_component_form">
-            <strong>Currently Viewing {{component_name}}</strong><br>
+        <form action="/cubes/view-cube" method="get" class="generic_container">
+            <div class="component_indicator">Currently Viewing {{component_name}}</div>
             <input type="hidden" name="cube_id" value={{cube_id}}>
             <label for="cube_component">Switch To:</label>
             <select name="cube_component" value={{cube_component}} style="width: 30em;" onchange="genericSubmit()">

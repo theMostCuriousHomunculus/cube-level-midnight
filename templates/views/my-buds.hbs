@@ -12,11 +12,11 @@
 
         <h2>Howdy, {{account_name}}!</h2>
 
-        <form action="/users/search-users" method="get" class="generic_form_container">
+        <form action="/users/search-users" method="get" class="generic_container">
             <h3>Find a New Bud!</h3>
             <label for="account_name">Account Name: </label>
             <input type="text" name="account_name" id="account_name" style="width: 21em;" autocomplete="off" required>
-            <input type="submit" value="Search!">
+            <input type="submit" class="fancy_button" value="Search!">
         </form>
 
         <div id="relationship_container">
@@ -38,8 +38,7 @@
                         </td>
                         <td>
                             {{#each this.cubes}}
-                                <a href="/cubes/view-cube?cube_id={{this._id}}&cube_component=main_board" style="width: fit-content; padding: 10px;">{{this.cube_name}}</a>
-                                <br>
+                                <a href="/cubes/view-cube?cube_id={{this._id}}&cube_component=main_board">{{this.cube_name}}</a>
                             {{/each}}
                         </td>
                     </tr>

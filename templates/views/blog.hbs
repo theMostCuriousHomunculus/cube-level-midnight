@@ -10,10 +10,10 @@
             {{>header}}
         </div>
 
-        <form action="/blog/search" method="get" id="blog_search_form" class="generic_form_container">
+        <form action="/blog/search" method="get" id="blog_search_form" class="generic_container">
             <label for="topic_search">Search Topics: </label>
             <input type="text" name="topic_search" id="topic_search" style="width: 60em;" autocomplete="off">
-            <input type="submit" value="Search!">
+            <input type="submit" class="fancy_button" value="Search!">
         </form>
 
         {{#each posts}}

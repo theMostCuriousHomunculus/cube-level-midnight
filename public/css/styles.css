@@ -8,8 +8,8 @@ a {
     border: none;
     border-radius: 10px;
     color: rgb(255,255,255);
-    margin: none;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px 10px 5px 10px;
 }
 
 body {
@@ -60,7 +60,7 @@ p {
 
 select {
     padding: 3px 2px 3px 2px;
-    margin: 10px;
+    margin: 10px 0px 10px 0px;
 }
 
 table {
@@ -69,10 +69,8 @@ table {
 
 table a {
     display: block;
-    height: 100%;
-    padding: 5px 0px 5px 0px;
     text-align: center;
-    width: 100%;
+    width: 100% - 10px;
 }
 
 table select {
@@ -100,8 +98,7 @@ table tr:nth-child(even) {
 textarea {
     font-family: arial;
     padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 0px;
-    vertical-align: top;
+    margin: 5px 0px 5px 10px;
 }
 
 .avatar {
@@ -116,21 +113,7 @@ textarea {
     border-style: solid;
     border-width: 2px;
     float: left;
-    margin: 5px;
     overflow: hidden;
-}
-
-.button_as_link {
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 10px;
-    color: rgb(255,255,255);
-    cursor: pointer;
-    font-family: inherit;
-    font-size: inherit;
-    outline: none;
-    padding: 10px !important;
-    text-decoration: underline;
 }
 
 .color_container {
@@ -144,10 +127,22 @@ textarea {
     text-align: center;
 }
 
+.color_container h2 {
+    cursor: default;
+    text-indent: 0;
+    word-wrap: break-word;
+}
+
 .color_container p {
     cursor: default;
     margin: 1px;
     text-indent: 0;
+    word-wrap: break-word;
+}
+
+.component_indicator {
+    font-weight: bold;
+    margin: 10px 0px 5px 10px;
 }
 
 .fa-arrow-circle-left {
@@ -176,7 +171,20 @@ textarea {
     padding: 5px;
 }
 
-.generic_form_container {
+.fancy_button {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    color: rgb(255,255,255);
+    cursor: pointer;
+    font-size: inherit;
+    outline: none;
+    margin: 5px;
+    padding: 5px 10px 5px 10px !important;
+    text-decoration: underline;
+}
+
+.generic_container {
     border-color: var(--primary-color);
     border-radius: 5px;
     border-style: solid;
@@ -209,33 +217,27 @@ textarea {
     margin: 5px;
 }
 
-.two_column_grid {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 2px;
-    padding: 3px;
-}
-
-.two_column_grid form {
+.subcontainer {
     border-color: var(--secondary-color);
     border-radius: 5px;
     border-style: solid;
     border-width: 2px;
     margin: 2px;
-    padding: 3px;
     position: relative;
 }
 
-.two_column_grid form h2 {
+.subcontainer h2 {
     text-align: center;
 }
 
-.two_column_grid form h3, input, label {
+.subcontainer h3, input, label {
     margin-left: 10px !important;
+    margin: 5px;
+}
+
+.two_column {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .user_table {
@@ -249,31 +251,10 @@ textarea {
     clear: left;
 }
 
-#component_forms_container {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 0px;
-    padding: 5px;
-}
-
 #cube_display {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     margin: 0px;
-}
-
-#cube_info {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    line-height: 100%;
-    margin: 0px;
-    padding: 3px;
 }
 
 #cube_links {
@@ -322,7 +303,9 @@ textarea {
 
 #header a {
     float: right;
-    margin-top: 0px;
+    margin: 0px;
+    text-align: center;
+    width: 5em;
 }
 
 #header h1 {
@@ -347,15 +330,6 @@ textarea {
     margin: 1px;
     padding: 1px;
     text-align: center;
-}
-
-#select_component_form {
-    border-color: var(--primary-color);
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    margin: 0px;
-    padding: 5px;
 }
 
 #term_definition {

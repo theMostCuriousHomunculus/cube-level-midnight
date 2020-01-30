@@ -10,47 +10,51 @@
             {{>header}}
         </div>
 
-        <div class="two_column_grid">
-            <form action="/draft/create-lobby" method="post" autocomplete="off">
-                <h2>Create a New Draft!</h2>
-                <label for="lobby_name">Lobby Name:</label>
-                <input type="text" name="lobby_name" id="lobby_name" maxlength="30" autocomplete="off" required><br>
-                <label for="number_of_packs">Packs per Drafter:</label>
-                <input type="number" name="number_of_packs" id="number_of_packs" min="1" step="1" required><br>
-                <label for="cards_per_pack">Cards per Pack:</label>
-                <input type="number" name="cards_per_pack" id="cards_per_pack" min="2" step="1" required><br>
-                <label for="cube_to_draft">Cube to Draft:</label>
-                <select name="cube_to_draft" id="cube_to_draft" style="width: 21em; margin-left: 10px;" onchange="getCubeComponents()" required>
-                    <option hidden disabled selected value> -- select a cube -- </option>
-                    {{#each cubes}}
-                        <option value={{this._id}}>{{this.cube_name}}</option>
-                    {{/each}}
-                </select><br>
-                <h3>Buds to Include: </h3>
-                <div id="bud_ceckboxes">
-                    {{#each buddies}}
-                        <div class="avatar_container" style="height: 100px; width: 100px;">
-                            <img src={{this.avatar}} class="avatar">
-                        </div>
-                        <input type="checkbox" id={{this._id}} name="buds[]" value={{this._id}}>
-                        <label for={{this._id}} style="font-size: larger;">{{this.account_name}}</label>
-                        <br style="clear: left;">
-                    {{/each}}
-                </div>
-                <h3>Modules to Include: </h3>
-                <div id="module_checkboxes">
-                    <!-- modules will populate here when user makes a cube selection -->
-                </div>
-                <button type="submit" class="button_as_link" style="position: absolute; bottom: 0; right: 0; margin: 5px;">Start Draft!</button>
-            </form>
+        <div class="generic_container two_column">
+            <div class="subcontainer">
+                <form action="/draft/create-lobby" method="post" autocomplete="off">
+                    <h2>Create a New Draft!</h2>
+                    <label for="lobby_name">Lobby Name:</label>
+                    <input type="text" name="lobby_name" id="lobby_name" maxlength="30" autocomplete="off" required><br>
+                    <label for="number_of_packs">Packs per Drafter:</label>
+                    <input type="number" name="number_of_packs" id="number_of_packs" min="1" step="1" required><br>
+                    <label for="cards_per_pack">Cards per Pack:</label>
+                    <input type="number" name="cards_per_pack" id="cards_per_pack" min="2" step="1" required><br>
+                    <label for="cube_to_draft">Cube to Draft:</label>
+                    <select name="cube_to_draft" id="cube_to_draft" style="width: 21em; margin-left: 10px;" onchange="getCubeComponents()" required>
+                        <option hidden disabled selected value> -- select a cube -- </option>
+                        {{#each cubes}}
+                            <option value={{this._id}}>{{this.cube_name}}</option>
+                        {{/each}}
+                    </select><br>
+                    <h3>Buds to Include: </h3>
+                    <div id="bud_ceckboxes">
+                        {{#each buddies}}
+                            <div class="avatar_container" style="height: 100px; margin: 5px 5px 5px 10px; width: 100px;">
+                                <img src={{this.avatar}} class="avatar">
+                            </div>
+                            <input type="checkbox" id={{this._id}} name="buds[]" value={{this._id}}>
+                            <label for={{this._id}} style="font-size: larger;">{{this.account_name}}</label>
+                            <br style="clear: left;">
+                        {{/each}}
+                    </div>
+                    <h3>Modules to Include: </h3>
+                    <div id="module_checkboxes">
+                        <!-- modules will populate here when user makes a cube selection -->
+                    </div>
+                    <input type="submit" class="fancy_button" style="position: absolute; bottom: 5px; right: 10px;" value="Start Draft!">
+                </form>
+            </div>
 
-            <form action="/draft/join-lobby" method="" autocomplete="off">
-                <h2>Join a Lobby!</h2>
-                <label for="lobby_to_join_name">Lobby Name:</label>
-                <input type="text" name="lobby_name" id="lobby_to_join_name" maxlength="30" autocomplete="off" required>
-                <input type="hidden" name="user_id" value={{user_id}}>
-                <button type="submit" class="button_as_link">Let the Mushroom Stamping Begin!</button>
-            </form>
+            <div class="subcontainer">
+                <form action="/draft/join-lobby" method="" autocomplete="off">
+                    <h2>Join a Lobby!</h2>
+                    <label for="lobby_to_join_name">Lobby Name:</label>
+                    <input type="text" name="lobby_name" id="lobby_to_join_name" maxlength="30" autocomplete="off" required>
+                    <input type="hidden" name="user_id" value={{user_id}}>
+                    <input type="submit" class="fancy_button" value="Start Mushroom Stamping!">
+                </form>
+            </div>
         </div>
 
         <div id="footer">
