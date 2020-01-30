@@ -19,7 +19,7 @@ function validateInfo() {
 
   jQuery.ajax({
     type: "POST",
-    url: '/users/check-username-availability',
+    url: '/users/registration-validation',
     data: {
       account_name: accountName.value.trim(),
       email: email.value

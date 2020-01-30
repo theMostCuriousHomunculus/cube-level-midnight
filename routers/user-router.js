@@ -6,7 +6,7 @@ const asyncForEach = require('../utils/async-forEach')
 const router = new express.Router()
 
 // see if a username is available
-router.post('/users/check-username-availability', async (req, res) => {
+router.post('/users/registration-validation', async (req, res) => {
     const nameTaken = await User.findOne({ account_name: req.body.account_name }).collation({ locale: 'en', strength: 2 })
     const emailAlreadyRegistered = await User.findOne({ email: req.body.email })
 
@@ -89,6 +89,24 @@ router.post('/users/logout-all', authentication, async (req, res) => {
 router.post('/users/change-avatar', authentication, async (req, res) => {
 
     req.user.avatar = req.body.image
+    await req.user.save()
+    res.redirect('/users/my-profile')
+})
+
+// check account name availability
+router.post('/users/check-account-name-availability', authentication, async (req, res) => {
+    const nameTaken = await User.findOne({ account_name: req.body.account_name }).collation({ locale: 'en', strength: 2 })
+
+    if (nameTaken) {
+        res.status(406).send({ error: "That username is already taken!  Try a different one.", account_name: req.user.account_name })
+    } else {
+        res.status(202).send({})
+    }
+})
+
+// change the user's account name
+router.post('/users/change-account-name', authentication, async (req, res) => {
+    req.user.account_name = req.body.account_name
     await req.user.save()
     res.redirect('/users/my-profile')
 })

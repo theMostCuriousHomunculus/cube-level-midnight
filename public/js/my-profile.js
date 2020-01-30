@@ -1,17 +1,10 @@
+const accountName = document.getElementById("account_name")
 const changeAvatar = document.getElementById("change_avatar")
-// const backImage = document.getElementById("back_image")
 const cardResults = document.getElementById("card_results")
 const cardToSearch = document.getElementById("card_to_search")
-// const cmc = document.getElementById("cmc")
+const form = document.getElementById("change_account_name")
 const image = document.getElementById("image")
-// const loyalty = document.getElementById("loyalty")
-// const manaCost = document.getElementById("mana_cost")
-// const oracleId = document.getElementById("oracle_id")
-// const power = document.getElementById("power")
-// const purchaseLink = document.getElementById("purchase_link")
 const selectedPrinting = document.getElementById("selected_printing")
-// const toughness = document.getElementById("toughness")
-// const typeLine = document.getElementById("type_line")
 var request = null
 
 function scryfallCardSearch() {
@@ -34,7 +27,6 @@ function scryfallCardSearch() {
                     
                     var option = document.createElement("option")
                     option.setAttribute("value", suggestion.name)
-                    // option.setAttribute("data-oracle_id", suggestion.oracle_id)
                     option.setAttribute("data-prints_search_uri", suggestion.prints_search_uri)
                     cardResults.appendChild(option)                    
                 })
@@ -108,4 +100,26 @@ function submitChangeAvatar() {
     } else {
         alert("We couldn't find that card.  Please try again!")
     }
+}
+
+function submitChangeAccountName() {
+    jQuery.ajax({
+        type: "POST",
+        url: '/users/check-account-name-availability',
+        xhrFields: { withCredentials: true },
+        data: {
+            account_name: accountName.value.trim(),
+        },
+        dataType: 'text json',
+        success: function(response) {
+            console.log("C")
+            form.submit()
+        },
+        error: function(e) {
+            var responseJson = JSON.parse(e.responseText)
+            form.children[4].value = responseJson.account_name
+            alert(responseJson.error)
+            form.children[4].focus()
+        }
+    })
 }

@@ -28,11 +28,16 @@
                 <h2>{{message}}</h2>
 
                 {{#if finished}}
-                    {{#each selections}}
-                        <div style="float: left;">
-                            <img src={{this.image}} height="285px" />
-                            {{#if this.back_image}}<img src={{this.back_image}} height="285px" />{{/if}}
-                        </div>
+                    {{#each selections_as_color_arrays}}
+                        {{#if this.length}}
+                            <div style="border: none; padding-left: 10px; padding-right: 10px;">
+                                <h3 style="margin-bottom: 5px; margin-left: 0px; margin-top: 5px; text-align: center;">{{@key}} ({{this.length}})</h3>
+                                {{#each this}}
+                                    <img src={{this.image}} height="285px" />
+                                    {{#if this.back_image}}<img src={{this.back_image}} height="285px" />{{/if}}
+                                {{/each}}
+                            </div>
+                        {{/if}}
                     {{/each}}
                 {{/if}}
 

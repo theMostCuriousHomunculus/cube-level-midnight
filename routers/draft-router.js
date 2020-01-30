@@ -4,6 +4,7 @@ const { Lobby } = require('../models/lobby-model')
 const User = require('../models/user-model')
 const authentication = require('../middleware/authentication')
 const asyncForEach = require('../utils/async-forEach')
+const { colorSort } = require('../utils/card-sort')
 const router = new express.Router()
 
 // takes you to the draft homepage
@@ -161,7 +162,7 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
             finished: true,
             message: "Your picks:",
             refresh: false,
-            selections: lobby.drafters[drafterIndex].picks,
+            selections_as_color_arrays: colorSort(lobby.drafters[drafterIndex].picks),
             title: lobby.lobby_name
         })
     } else if (nextPack === 1) {

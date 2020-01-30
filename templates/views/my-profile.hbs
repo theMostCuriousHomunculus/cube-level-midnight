@@ -14,16 +14,20 @@
             <img src={{avatar}} class="avatar">
         </div>
 
-        <p>Account Name: {{account_name}}</p>
-        <p>Email: {{email}}</p>
+        <form action="/users/change-account-name" method="post" id="change_account_name" autocomplete="off" style="margin-top: 10px;">
+            <div style="display: inline; margin-left: 10px;">Email:</div><div style="display: inline; margin-left: 10px;">{{email}}</div>
+            <br>
+            <label for="account_name">Account Name:</label>
+            <input type="text" name="account_name" id="account_name" value="{{account_name}}" onchange="submitChangeAccountName()">
+        </form>
 
         <form action="/users/change-avatar" method="post" id="change_avatar" autocomplete="off" onsubmit="submitChangeAvatar()">
-            <label for="card_to_search">Change Card Image Avatar: </label>
+            <label for="card_to_search">Change Card Image Avatar:</label>
             <input type="text" name="card_to_search" id="card_to_search" list="card_results" style="width: 21em;" onkeyup="scryfallCardSearch()" onchange="scryfallPrintSearch()" required>
             <datalist id="card_results">
             <!-- the search results from scryfall will populate here -->
             </datalist>
-            <label for="selected_printing">Printing: </label>
+            <label for="selected_printing">Printing:</label>
             <select name="selected_printing" id="selected_printing" style="width: 5em;" required>
             <!-- the available printings will populate here -->
             </select>
@@ -31,17 +35,13 @@
             <input type="submit" value="Change My Avatar!">
         </form>
 
-        <div>
-            <form action="/users/logout" method="post">
-                <button type="submit" class="button_as_link">Logout of This Session</button>
-            </form>
-        </div>
-        <br>
-        <div>
-            <form action="/users/logout-all" method="post">
-                <button type="submit" class="button_as_link">Logout of All Sessions</button>
-            </form>
-        </div>
+        <form action="/users/logout" method="post" style="display: inline; margin: 10px;">
+            <button type="submit" class="button_as_link">Logout of This Session</button>
+        </form>
+
+        <form action="/users/logout-all" method="post" style="display: inline; margin: 10px;">
+            <button type="submit" class="button_as_link">Logout of All Sessions</button>
+        </form>
 
         <div id="footer">
             {{>footer}}
