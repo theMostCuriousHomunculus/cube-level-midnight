@@ -314,12 +314,12 @@ textarea {
     float: right;
     margin: 0px;
     text-align: center;
-    width: 5em;
+    width: calc(1/18 * 100%);
 }
 
 #header h1 {
     color: var(--primary-color);
-    font-size: 6vh;
+    font-size: 3vw;
     font-weight: 1000;
     line-height: 25px;
     margin-top: 0px;
