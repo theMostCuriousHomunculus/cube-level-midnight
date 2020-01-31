@@ -10,19 +10,19 @@
             {{>header}}
         </div>
 
-        <div class="generic_container" style="height: 174px; position: relative;">
-            <div class="avatar_container" style="height: 150px; margin: 10px; width: 150px;">
+        <div class="generic_container" style="height: 11.4vw; position: relative;">
+            <div class="avatar_container" style="height: 10vw; margin: 0.65vw; width: 10vw;">
                 <img src={{avatar}} class="avatar">
             </div>
 
-            <form action="/users/change-account-name" method="post" id="change_account_name" style="margin-top: 10px;" autocomplete="off">
-                <div style="display: inline; margin-left: 10px;">Email:</div><div style="display: inline; margin-left: 10px;">{{email}}</div>
+            <form action="/users/change-account-name" method="post" id="change_account_name" style="margin-top: 0.65vw;" autocomplete="off">
+                <div style="display: inline; font-size: calc(7/6 * 1vw); margin-left: 0.65vw;">Email:</div><div style="display: inline; font-size: calc(7/6 * 1vw); margin-left: 0.65vw;">{{email}}</div>
                 <br>
                 <label for="account_name">Account Name:</label>
                 <input type="text" name="account_name" id="account_name" value="{{account_name}}" onchange="submitChangeAccountName()">
             </form>
 
-            <form action="/users/logout" method="post" style="position: absolute; bottom: 10px; left: 180px;">
+            <form action="/users/logout" method="post" style="position: absolute; bottom: 0.65vw; left: 11.6vw;">
                 <input type="submit" class="fancy_button" value="Logout">
             </form>
         </div>
@@ -41,7 +41,7 @@
             <input type="submit" class="fancy_button" value="Change My Avatar!">
         </form>
 
-        {{!-- <form action="/users/logout-all" method="post" style="display: inline; margin: 10px;">
+        {{!-- <form action="/users/logout-all" method="post" style="display: inline; margin: 0.65vw;">
             <input type="submit" class="fancy_button" value="Logout of All Sessions">
         </form> --}}
 

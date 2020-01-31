@@ -21,7 +21,7 @@
                     <label for="cards_per_pack">Cards per Pack:</label>
                     <input type="number" name="cards_per_pack" id="cards_per_pack" min="2" step="1" required><br>
                     <label for="cube_to_draft">Cube to Draft:</label>
-                    <select name="cube_to_draft" id="cube_to_draft" style="width: 21em; margin-left: 10px;" onchange="getCubeComponents()" required>
+                    <select name="cube_to_draft" id="cube_to_draft" style="width: 21em; margin-left: 0.65vw;" onchange="getCubeComponents()" required>
                         <option hidden disabled selected value> -- select a cube -- </option>
                         {{#each cubes}}
                             <option value={{this._id}}>{{this.cube_name}}</option>
@@ -30,11 +30,11 @@
                     <h3>Buds to Include: </h3>
                     <div id="bud_ceckboxes">
                         {{#each buddies}}
-                            <div class="avatar_container" style="height: 100px; margin: 5px 5px 5px 10px; width: 100px;">
+                            <div class="avatar_container" style="height: 5vw; margin: 0.325vw 0.325vw 0.325vw 0.65vw; width: 5vw;">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
                             <input type="checkbox" id={{this._id}} name="buds[]" value={{this._id}}>
-                            <label for={{this._id}} style="font-size: larger;">{{this.account_name}}</label>
+                            <label for={{this._id}} style="font-size: calc(7/6 * 1vw);">{{this.account_name}}</label>
                             <br style="clear: left;">
                         {{/each}}
                     </div>
@@ -42,7 +42,7 @@
                     <div id="module_checkboxes">
                         <!-- modules will populate here when user makes a cube selection -->
                     </div>
-                    <input type="submit" class="fancy_button" style="position: absolute; bottom: 5px; right: 10px;" value="Start Draft!">
+                    <input type="submit" class="fancy_button" style="position: absolute; bottom: 0.325vw; right: 0.65vw;" value="Start Draft!">
                 </form>
             </div>
 

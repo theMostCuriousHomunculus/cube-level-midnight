@@ -107,10 +107,10 @@
         <table width="100%">
             <tr class="header_row">
                 <th width="25%">Card Name</th>
-                <th width="17%">Color Identity</th>
+                <th width="20%">Color Identity</th>
                 <th width="8%">CMC</th>
-                <th width="10%">Set Name</th>
-                <th width="30%">Move To / Delete</th>
+                <th width="12%">Set Name</th>
+                <th width="25%">Move To / Delete</th>
                 <th width="10%">Purchase</th>
             </tr>
             {{#each component}}
@@ -125,11 +125,11 @@
                         <input type="hidden" name="cube_id" value={{../cube_id}}>
                         <input type="hidden" name="card_id" value={{this._id}}>
                         <input type="hidden" name="cube_component" value={{../cube_component}}>
-                        <input type="checkbox" name="W" value="W" {{this.W}} onchange="submitColorIdentityChange()"> W
-                        <input type="checkbox" name="U" value="U" {{this.U}} onchange="submitColorIdentityChange()"> U
-                        <input type="checkbox" name="B" value="B" {{this.B}} onchange="submitColorIdentityChange()"> B
-                        <input type="checkbox" name="R" value="R" {{this.R}} onchange="submitColorIdentityChange()"> R
-                        <input type="checkbox" name="G" value="G" {{this.G}} onchange="submitColorIdentityChange()"> G
+                        <input type="checkbox" name="W" value="W" {{this.W}} onchange="submitColorIdentityChange()"><label class="color_label">W</label>
+                        <input type="checkbox" name="U" value="U" {{this.U}} onchange="submitColorIdentityChange()"><label class="color_label">U</label>
+                        <input type="checkbox" name="B" value="B" {{this.B}} onchange="submitColorIdentityChange()"><label class="color_label">B</label>
+                        <input type="checkbox" name="R" value="R" {{this.R}} onchange="submitColorIdentityChange()"><label class="color_label">R</label>
+                        <input type="checkbox" name="G" value="G" {{this.G}} onchange="submitColorIdentityChange()"><label class="color_label">G</label>
                     </form>
                 </td>
                 <td>

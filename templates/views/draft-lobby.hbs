@@ -15,7 +15,7 @@
             <div>
                 <h2 style="text-align: center; text-decoration: underline;">Drafters</h2>
                 {{#each drafters}}
-                    <div class="avatar_container" style="border-color: rgb(0,0,0) !important; float: none !important; height: 150px; margin: 0 auto !important; width: 150px;">
+                    <div class="avatar_container" style="border-color: rgb(0,0,0) !important; float: none !important; height: 10vw; margin: 0 auto !important; width: 10vw;">
                         <img src={{this.avatar}} class="avatar">
                     </div>
                     <p style="text-align: center; text-indent: 0; clear: left; font-weight: bold;">
@@ -24,14 +24,14 @@
                 {{/each}}
             </div>
 
-            <div style="padding-left: 10px; padding-right: 10px;">
+            <div style="padding-left: 0.65vw; padding-right: 0.65vw;">
                 <h2>{{message}}</h2>
 
                 {{#if finished}}
                     {{#each selections_as_color_arrays}}
                         {{#if this.length}}
-                            <div style="border: none; padding-left: 10px; padding-right: 10px;">
-                                <h3 style="margin-bottom: 5px; margin-left: 0px; margin-top: 5px; text-align: center;">{{@key}} ({{this.length}})</h3>
+                            <div style="border: none; padding-left: 0.65vw; padding-right: 0.65vw;">
+                                <h3 style="margin-bottom: 0.325vw; margin-left: 0; margin-top: 0.325vw; text-align: center;">{{@key}} ({{this.length}})</h3>
                                 {{#each this}}
                                     <img src={{this.image}} height="285px" />
                                     {{#if this.back_image}}<img src={{this.back_image}} height="285px" />{{/if}}

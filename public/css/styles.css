@@ -6,22 +6,25 @@
 a {
     background-color: var(--primary-color);
     border: none;
-    border-radius: 10px;
+    border-radius: 0.65vw;
     color: rgb(255,255,255);
-    font-size: 7/6vw;
-    margin: 5px;
-    padding: 5px 10px 5px 10px;
+    font-size: calc(7/6 * 1vw);
+    margin: 0.325vw;
+    padding: 0.325vw 0.65vw;
 }
 
 body {
     font-family: arial;
-    margin: 0px;
     height: 100%;
+    margin: 0;
+    min-height: calc(100vh - 16vw);
+    padding-bottom: 16vw;
+    position: relative;
 }
 
 h1, h2, h3 {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 0.65vw;
+    margin-right: 0.65vw;
 }
 
 h1 {
@@ -33,48 +36,64 @@ h2 {
 }
 
 h3 {
-    font-size: 7/6vw;
+    font-size: calc(7/6 * 1vw);
+}
+
+input[type=checkbox] {
+    height: 1.2vw;
+    margin: 0;
+    width: 1.2vw;
 }
 
 input[type=email] {
-    padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 0px;
+    font-size: 1vw;
+    padding: 0.2vw 0.125vw;
+    margin: 0.325vw 0;
     width: 21em;
 }
 
 input[type=number] {
-    padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 0px;
+    font-size: 1vw;
+    padding: 0.2vw 0.125vw;
+    margin: 0.325vw 0;
     width: 5em;
 }
 
 input[type=password] {
-    padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 0px;
+    font-size: 1vw;
+    padding: 0.2vw 0.125vw;
+    margin: 0.325vw 0;
     width: 15em;
 }
 
 input[type=submit] {
-    padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 0px;
+    font-size: calc(7/6 * 1vw);
+    padding: 0.2vw 0.125vw;
+    margin: 0.325vw 0;
 }
 
 input[type=text] {
-    padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 0px;
+    font-size: 1vw;
+    padding: 0.2vw 0.125vw;
+    margin: 0.325vw 0;
     width: 21em;
+}
+
+label {
+    font-size: calc(7/6 * 1vw);
 }
 
 p {
     font-size: 1vw;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 0.65vw;
+    margin-right: 0.65vw;
     text-indent: 3em;
 }
 
 select {
-    padding: 3px 2px 3px 2px;
-    margin: 10px 0px 10px 0px;
+    font-size: 1vw;
+    padding: 0.2vw 0.125vw;
+    margin: 0.65vw 0;
 }
 
 table {
@@ -84,24 +103,28 @@ table {
 table a {
     display: block;
     text-align: center;
-    width: 100% - 10px;
+    width: 100% - 0.65vw;
 }
 
 table select {
-    margin: 5px;
+    margin: 0.325vw;
+}
+
+table td {
+    font-size: 1vw;
 }
 
 table th {
     background-color: var(--secondary-color);
     border-color: var(--primary-color);
-    border-radius: 5px;
+    border-radius: 0.325vw;
     border-style: solid;
-    border-width: 2px;
+    border-width: 0.125vw;
     color: var(--primary-color);
-    font-size: 16pt;
+    font-size: 1.5vw;
     font-weight: bold;
-    margin: 2px;
-    padding: 3px;
+    margin: 0.125vw;
+    padding: 0.2vw;
     text-align: left;
 }
 
@@ -111,8 +134,9 @@ table tr:nth-child(even) {
 
 textarea {
     font-family: arial;
-    padding: 3px 2px 3px 2px;
-    margin: 5px 0px 5px 10px;
+    font-size: 1vw;
+    padding: 0.2vw 0.125vw;
+    margin: 0.325vw 0 0.325vw 0.65vw;
 }
 
 .avatar {
@@ -125,113 +149,110 @@ textarea {
     border-color: rgb(0,0,0);
     border-radius: 100% !important;
     border-style: solid;
-    border-width: 2px;
+    border-width: 0.125vw;
     float: left;
     overflow: hidden;
 }
 
 .color_container {
     border-color: black;
-    border-radius: 10px;
+    border-radius: 0.65vw;
     border-style: solid;
-    border-width: 2px;
+    border-width: 0.125vw;
     cursor: default;
-    margin: 1px;
-    padding: 0px;
+    margin: 0.06vw;
+    padding: 0;
     text-align: center;
 }
 
 .color_container p {
-    margin: 0px 1px;
+    margin: 0 0.06vw;
     line-height: 150%;
     text-indent: 0;
 }
 
+.color_label {
+    font-size: 1vw;
+    margin: 0 0.15vw 0 0.06vw;
+}
+
 .component_indicator {
     font-weight: bold;
-    margin: 10px 0px 5px 10px;
+    margin: 0.65vw 0 0.325vw 0.65vw;
 }
 
 .fa-arrow-circle-left {
-    background-color: var(--primary-color);
-    border-radius: 100%;
-    color: rgb(255,255,255);
     cursor: pointer;
-    font-size: inherit;
-    margin: 0px 5px 0px 10px;
-    padding: 5px;
+    font-size: calc(7/6 * 1vw);
+    margin: 0 0.325vw 0 0.65vw;
 }
 
 .fa-arrow-circle-right {
-    background-color: var(--primary-color);
-    border-radius: 100%;
-    color: rgb(255,255,255);
     cursor: pointer;
-    font-size: inherit;
-    margin: 0px 10px 0px 5px;
-    padding: 5px;
+    font-size: calc(7/6 * 1vw);
+    margin: 0 0.65vw 0 0.325vw;
 }
 
-.fa-info-circle {
+.fas {
     background-color: var(--primary-color);
     border-radius: 100%;
     color: rgb(255,255,255);
-    font-size: inherit;
-    padding: 5px;
+    /* font-size: inherit; */
+    padding: 0.325vw;
 }
 
 .fancy_button {
     background-color: var(--primary-color);
     border: none;
-    border-radius: 10px;
+    border-radius: 0.65vw;
     color: rgb(255,255,255);
     cursor: pointer;
     font-size: inherit;
     outline: none;
-    margin: 5px;
-    padding: 5px 10px 5px 10px !important;
+    margin: 0.325vw;
+    padding: 0.325vw 0.65vw !important;
     text-decoration: underline;
 }
 
 .generic_container {
     border-color: var(--primary-color);
-    border-radius: 5px;
+    border-radius: 0.325vw;
     border-style: solid;
-    border-width: 2px;
-    margin: 0px;
-    padding: 5px;
+    border-width: 0.125vw;
+    margin: 0;
+    padding: 0.325vw;
 }
 
 .image_as_button {
-    border: 0px;
+    border: none;
     cursor: pointer;
-    height: 285px;
-    padding: 0px;
+    height: 280.325vw;
+    padding: 0;
 }
 
 .lock {
     background-color: var(--primary-color);
     border: none;
-    border-radius: 5px;
+    border-radius: 0.325vw;
     color: rgb(255,255,255);
     cursor: pointer;
-    font-size: 10pt;
-    margin: 0px;
-    padding: 5px 0px;
+    font-size: 1vw;
+    margin: 0;
+    padding: 0.325vw 0;
     width: 42%;
 }
 
 .pagination {
     text-align: center;
-    margin: 5px;
+    margin: 0.325vw;
 }
 
 .subcontainer {
     border-color: var(--secondary-color);
-    border-radius: 5px;
+    border-radius: 0.325vw;
     border-style: solid;
-    border-width: 2px;
-    margin: 2px;
+    border-width: 0.125vw;
+    margin: 0.125vw;
     position: relative;
 }
 
@@ -240,8 +261,8 @@ textarea {
 }
 
 .subcontainer h3, input, label {
-    margin-left: 10px !important;
-    margin: 5px;
+    margin-left: 0.65vw !important;
+    margin: 0.325vw;
 }
 
 .two_column {
@@ -263,7 +284,7 @@ textarea {
 #cube_display {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    margin: 0px;
+    margin: 0;
 }
 
 #cube_links {
@@ -279,18 +300,21 @@ textarea {
 
 #draft_lobby_main_content div {
     border-color: var(--primary-color);
-    border-radius: 10px;
+    border-radius: 0.65vw;
     border-style: solid;
-    border-width: 2px;
+    border-width: 0.125vw;
 }
 
 #footer {
     background-color: var(--primary-color);
+    bottom: 0;
     clear: both;
     color: var(--secondary-color);
-    height: 285px;
+    height: 16vw;
+    position: absolute;
     text-align: center;
     width: 100%;
+    z-index: -1;
 }
 
 #footer a {
@@ -303,51 +327,59 @@ textarea {
 
 #header {
     background-color: var(--secondary-color);
-    clear: both;
-    height: 120px;
-    padding: 0px;
-    margin: 0px;
+    height: 8vw;
+    padding: 0;
+    margin: 0;
     width: 100%;
 }
 
 #header a {
     float: right;
-    margin: 0px;
+    margin: 0;
     text-align: center;
-    width: calc(1/18 * 100%);
+    width: calc(100/12 * 1vw);
 }
 
 #header h1 {
     color: var(--primary-color);
     font-size: 3vw;
     font-weight: 1000;
-    line-height: 25px;
-    margin-top: 0px;
-    padding-top: 10px;
+    margin: 0 0.65vw;
+    padding: 0;
+    line-height: 120%;
+}
+
+#header h2 {
+    color: var(--primary-color);
+    font-size: 2vw;
+    font-weight: 1000;
+    margin: 0 0.65vw;
+    padding: 0;
+    line-height: 200%;
 }
 
 #relationship_container div {
     border-color: black;
-    border-radius: 10px;
+    border-radius: 0.65vw;
     border-style: solid;
-    border-width: 2px;
-    margin: 1px;
-    padding: 1px;
+    border-width: 0.125vw;
+    margin: 0.06vw;
+    padding: 0.06vw;
     text-align: center;
 }
 
 #term_definition {
     color: var(--primary-color);
-    margin: 10px;
+    margin: 0.65vw;
 }
 
 #term_definition_container {
     background-color: var(--secondary-color);
     border-color: var(--primary-color);
-    border-radius: 5px;
+    border-radius: 0.325vw;
     border-style: solid;
-    border-width: 2px;
-    padding: 10px;
+    border-width: 0.125vw;
+    padding: 0.65vw;
     width: 25em;
 }
 
