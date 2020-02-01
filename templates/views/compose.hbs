@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cube Level Midnight</title>
+        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <div id="header">
+            {{>header}}
+        </div>
+
+        <form action="/blog/post" method="post" class="generic_container" style="overflow: hidden;">
+            <label for="post_title" style="display: block;">Post Title:</label>
+            <input type="text" id="post_title" name="post_title" autocomplete="off">
+            <label for="post_body" style="display: block;">Post Body:</label>
+            <textarea id="post_body" name="body" autocomplete="off" style="height: 50vh; width: calc(100% - 1.7vw);"></textarea>
+            <input type="submit" class="fancy_button" style="float: right; margin-right: 0.65vw;" value="Post Article">
+        </form>
+
+        <div id="footer">
+            {{>footer}}
+        </div>
+
+    </body>
+</html>

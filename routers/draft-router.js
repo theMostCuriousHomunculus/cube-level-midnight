@@ -119,8 +119,8 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
 
     if (!lobby) {
         res.status(404).render('error', {
-            error: "That lobby doesn't exist.",
-            title: "Error"
+            error_messsage: "That lobby doesn't exist.",
+            title: "Error!"
         })
     }
 
@@ -131,8 +131,8 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
 
     if (!drafters.includes(req.query.user_id)) {
         res.status(401).render('error', {
-            error: "You were not invited to that lobby.",
-            title: "Error"
+            error_message: "You were not invited to that lobby.",
+            title: "Error!"
         })
     }
 

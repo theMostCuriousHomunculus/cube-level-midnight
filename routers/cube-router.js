@@ -200,7 +200,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         return component
     }).then((result) => {
         res.render('edit-cube', {
-            component: alphabeticalSort(result).slice(limit*skip, limit*(1 + skip) - 1),
+            component: alphabeticalSort(result).slice(limit*skip, limit*(1 + skip)),
             component_name: component_name,
             cube_component: component_id,
             cube_description: req.cube.cube_description,

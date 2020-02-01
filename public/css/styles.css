@@ -22,7 +22,7 @@ body {
     position: relative;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     margin-left: 0.65vw;
     margin-right: 0.65vw;
 }
@@ -37,6 +37,10 @@ h2 {
 
 h3 {
     font-size: calc(7/6 * 1vw);
+}
+
+h4 {
+    font-size: 1vw;
 }
 
 input[type=checkbox] {
@@ -75,7 +79,7 @@ input[type=submit] {
 input[type=text] {
     font-size: 1vw;
     padding: 0.2vw 0.125vw;
-    margin: 0.325vw 0;
+    margin: 0.325vw 0.65vw;
     width: 21em;
 }
 
@@ -136,7 +140,7 @@ textarea {
     font-family: arial;
     font-size: 1vw;
     padding: 0.2vw 0.125vw;
-    margin: 0.325vw 0 0.325vw 0.65vw;
+    margin: 0.325vw 0.65vw 0.325vw 0.65vw;
 }
 
 .avatar {
@@ -177,6 +181,7 @@ textarea {
 }
 
 .component_indicator {
+    font-size: calc(7/6 * 1vw);
     font-weight: bold;
     margin: 0.65vw 0 0.325vw 0.65vw;
 }
@@ -226,7 +231,7 @@ textarea {
 .image_as_button {
     border: none;
     cursor: pointer;
-    height: 280.325vw;
+    height: 285px;
     padding: 0;
 }
 
@@ -253,6 +258,7 @@ textarea {
     border-style: solid;
     border-width: 0.125vw;
     margin: 0.125vw;
+    padding: 0.325vw;
     position: relative;
 }
 
@@ -261,8 +267,7 @@ textarea {
 }
 
 .subcontainer h3, input, label {
-    margin-left: 0.65vw !important;
-    margin: 0.325vw;
+    margin: 0.65vw 0.325vw 0.325vw 0.65vw;
 }
 
 .two_column {

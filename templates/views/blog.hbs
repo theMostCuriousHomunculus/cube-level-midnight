@@ -14,16 +14,13 @@
             <label for="topic_search">Search Topics: </label>
             <input type="text" name="topic_search" id="topic_search" style="width: 60em;" autocomplete="off">
             <input type="submit" class="fancy_button" value="Search!">
+            {{#if admin_access}}<a href="/blog/compose" style="float: right;">New Post</a>{{/if}}
         </form>
 
         {{#each posts}}
             <h2><a href="/blog/article?article_id={{this._id}}">{{this.post_title}}</a></h2>
             <h3 class="timestamp">{{this.createdAt}}</h3>
         {{/each}}
-
-        {{!-- <form action="/blog/post" method="post">
-            <button type="submit">Post Article</button>
-        </form> --}}
 
         <div id="footer">
             {{>footer}}

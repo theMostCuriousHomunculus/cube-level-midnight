@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const comment_model = require('./comment-model')
+const { Comment, commentSchema } = require('./comment-model')
 
 const postSchema = new mongoose.Schema({
     post_title: {
@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    comments: [comment_model.commentSchema],
+    comments: [commentSchema],
     tags: [String]
 }, {
     timestamps: true

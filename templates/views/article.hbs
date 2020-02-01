@@ -10,24 +10,34 @@
             {{>header}}
         </div>
 
-        <h2 class="timestamp">{{createdAt}}</h2>
+        <div class="generic_container">
+            <h4 class="timestamp">{{createdAt}}</h4>
 
-        <div>
-            {{{body}}}
+            <div>
+                {{{body}}}
+            </div>
         </div>
 
-        {{#each comments}}
-            <h3>{{this.account_name}}</h3>
-            <h4 class="timestamp">{{this.createdAt}}</h4>
-            <p>{{this.body}}</p>
-        {{/each}}
+        <div class="generic_container">
+            <form action="/blog/comment" method="post" class="subcontainer" style="overflow: hidden;">
+                <input type="hidden" name="post_id" value={{post_id}}>
+                <label for="comment_body">Let me have it:</label>
+                <textarea name="comment_body" id="comment_body" autocomplete="off" rows="3" style="width: calc(100% - 1.7vw)"></textarea>
+                <input type="submit" class="fancy_button" style="float: right; margin-right: 0.65vw;" value="Preach!!">
+            </form>
 
-        <form action="/blog/comment" method="post">
-            <input type="hidden" name="post_id" value={{post_id}}>
-            <label for="comment_body">Let me have it: </label>
-            <textarea name="comment_body" id="comment_body" autocomplete="off" rows="5" cols="60"></textarea>
-            <input type="submit" value="Preach!!">
-        </form>
+            <div class="subcontainer">
+                {{#each comments}}
+                    <div class="avatar_container" style="height: 5vw; margin: 0.65vw; width: 5vw;">
+                        <img src={{this.avatar}} class="avatar">
+                    </div>
+                    <h3>{{this.account_name}}</h3>
+                    <h4 class="timestamp" style="line-height: 0%;">{{this.createdAt}}</h4>
+                    <p style="margin-top: 2.07vw; word-wrap: break-word;">{{this.body}}</p>
+                    <br style="clear: left;">
+                {{/each}}
+            </div>
+        </div>        
 
         <div id="footer">
             {{>footer}}
