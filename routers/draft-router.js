@@ -20,7 +20,17 @@ router.get('/draft', authentication, async (req, res) => {
     })
 
     res.render('draft-home', {
-        buddies: buddies,
+        buddies: buddies.sort(function (a, b) {
+            var nameA = a.account_name.toUpperCase()
+            var nameB = b.account_name.toUpperCase()
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        }),
         cubes: cubes,
         title: "Create or Join a Draft!",
         user_id: req.user._id

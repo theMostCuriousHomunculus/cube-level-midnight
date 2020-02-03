@@ -145,10 +145,50 @@ router.get('/users/my-buds', authentication, async (req, res) => {
 
     res.render('my-buds', {
         account_name: req.user.account_name,
-        buds: buds,
-        pending_buds: sent_bud_requests,
-        aspiring_buds: received_bud_requests,
-        dicks: blocked_users,
+        buds: buds.sort(function (a, b) {
+            var nameA = a.account_name.toUpperCase()
+            var nameB = b.account_name.toUpperCase()
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        }),
+        pending_buds: sent_bud_requests.sort(function (a, b) {
+            var nameA = a.account_name.toUpperCase()
+            var nameB = b.account_name.toUpperCase()
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        }),
+        aspiring_buds: received_bud_requests.sort(function (a, b) {
+            var nameA = a.account_name.toUpperCase()
+            var nameB = b.account_name.toUpperCase()
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        }),
+        dicks: blocked_users.sort(function (a, b) {
+            var nameA = a.account_name.toUpperCase()
+            var nameB = b.account_name.toUpperCase()
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        }),
         title: "My Buds"
     })
     
@@ -158,6 +198,18 @@ router.get('/users/my-buds', authentication, async (req, res) => {
 router.get('/users/search-users', authentication, async (req, res) => {
 
     const matchingUsers = await User.find({ $text: { $search: req.query.account_name }, "blocked_users._id": { $ne: req.user._id } }, { score: { $meta: "textScore" } }).sort({ score: { $meta: "textScore" } })
+
+    matchingUsers.forEach(function(match) {
+        if (match.buds.includes(`{ _id: ${req.user._id } }`)) {
+            match.isBud = true
+        }
+        if (match.sent_bud_requests.includes(`{ _id: ${req.user._id} }`)) {
+            match.isAspiringBud = true
+        }
+        if (match.received_bud_requests.includes(`{ _id: ${req.user._id} }`)) {
+            match.isPendingBud = true
+        }
+    })
 
     res.render('user-search-results', {
         matching_users: matchingUsers,

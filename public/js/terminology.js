@@ -7,6 +7,12 @@ function explainModules() {
     termDefinition.style.display = "inline"
 }
 
+function explainSize() {
+    termDefinitionContainer.style.display = "block"
+    termDefinition.innerText = "The size of a rotation determines the number of random cards from that rotation which will be included in the potential card pool when a cube is drafted."
+    termDefinition.style.display = "inline"
+}
+
 function explainRotations() {
     termDefinitionContainer.style.display = "block"
     termDefinition.innerText = "A rotation is a collection of cards from which a few will be randomly included in each draft while the rest are excluded.  If you want to increase variety in your drafts, rotations are a great option.  We recommend that rotations include cards that are the same color(s) and have similar CMCs and functions."

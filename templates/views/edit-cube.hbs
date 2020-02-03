@@ -15,7 +15,7 @@
         {{>terminology}}
 
         <div class="generic_container">
-            <a href="/cubes/view-cube?cube_id={{cube_id}}&cube_component=main_board" style="float: right;">Back to View Mode</a>
+            <a href="/cubes/view-cube?cube_id={{cube_id}}&cube_component={{cube_component}}" style="float: right;">Back to View Mode</a>
             <form action="/cubes/edit-cube/change-cube-info" method="post" id="cube_info_form" onsubmit="event.preventDefault()">
                 <input type="hidden" name="cube_id" value={{cube_id}}>
                 <label for="cube_name" style="display: block; font-weight: bold;">Cube Name:</label>
@@ -31,7 +31,7 @@
                 <label for="cube_component">Switch To:</label>
                 <select name="cube_component" id="cube_component" value={{cube_component}} style="width: 21em;" onchange="changeViewedComponent()">
                     <option value="main_board" {{#if main_board_selected}}selected{{/if}}>Main Board</option>
-                    {{!-- <option value="side_board">Side Board</option> --}}
+                    <option value="sideboard" {{#if sideboard_selected}}selected{{/if}}>Sideboard</option>
                     {{#each modules}}
                         <option value={{this._id}} data-component_type="module" {{#if this.selected}}selected{{/if}}>{{this.module_name}} (Module)</option>
                     {{/each}}
@@ -46,10 +46,18 @@
                     <form action="/cubes/edit-cube/rename-component" method="post" id="rename_component_form" onsubmit="event.preventDefault()">
                         <input type="hidden" name="cube_id" value={{cube_id}}>
                         <input type="hidden" name="cube_component" value={{cube_component}}>
-                        <label for="changed_component_name">Rename Component: </label>
+                        <label for="changed_component_name">Rename {{#if rotation_selected}}Rotation{{else}}Module{{/if}}:</label>
                         <input type="text" name="changed_component_name" id="changed_component_name" value="{{component_name}}" maxlength="30" onchange="submitComponentChange()">
                     </form>
-                    <form action="/cubes/edit-cube/delete-component" method="post" id="delete_component_form" onsubmit="verifyDelete()">
+                    {{#if rotation_selected}}
+                        <form action="/cubes/edit-cube/change-rotation-size" method="post" style="display: inline;">
+                            <input type="hidden" name="cube_id" value={{cube_id}}>
+                            <input type="hidden" name="cube_component" value={{cube_component}}>
+                            <label for="rotation_size"><i class="fas fa-info-circle" onmouseover="explainSize()" onmouseout="clearTerm()"></i> Rotation Size:</label>
+                            <input type="number" id="rotation_size" name="rotation_size" min="0" max="{{component_cards.length}}" step="1" value={{component_size}} onchange="submitChangeRotationSize()">
+                        </form>
+                    {{/if}}
+                    <form action="/cubes/edit-cube/delete-component" method="post" id="delete_component_form" style="display: inline; float: right; margin-right: 10px;" onsubmit="verifyDelete()">
                         <input type="hidden" name="cube_id" value={{cube_id}}>
                         <input type="hidden" name="cube_component" value={{cube_component}}>
                         <input type="submit" class="fancy_button" value="Delete {{component_name}}">
@@ -57,7 +65,7 @@
                 </div>
             {{else}}
                 <div>
-                    {{!-- empty div to keep things in position if main board is selected --}}
+                    {{!-- empty div to keep things in position if main board or sideboard is selected --}}
                 </div>
             {{/if}}
 
@@ -113,7 +121,7 @@
                 <th width="25%">Move To / Delete</th>
                 <th width="10%">Purchase</th>
             </tr>
-            {{#each component}}
+            {{#each component_cards}}
             <tr>
                 <td onmouseover="displayImage()" onmouseout="clearImage()">
                     {{this.name}}
@@ -162,7 +170,7 @@
                         <input type="hidden" name="current_cube_component" value={{../cube_component}}>
                         <select name="new_cube_component" value={{../cube_component}} style="width: 21em;" onchange="genericSubmit()">
                             <option value="main_board" {{#if ../main_board_selected}}selected{{/if}}>Main Board</option>
-                            {{!-- <option value="side_board">Side Board</option> --}}
+                            <option value="sideboard" {{#if ../sideboard_selected}}selected{{/if}}>Sideboard</option>
                             {{#each ../modules}}
                                 <option value={{this._id}} {{#if this.selected}}selected{{/if}}>{{this.module_name}} (Module)</option>
                             {{/each}}

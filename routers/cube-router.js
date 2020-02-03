@@ -26,26 +26,40 @@ router.post('/cubes/create', authentication, async (req, res) => {
 router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
 
     var component
+    var componentCards
     var component_id = req.query.cube_component
-    var component_name
+    var componentName
+    var componentSize
     var deleteOption = true
-    var mainBoardSelected = false
+    var mainBoardSelected
+    var sideboardSelected
+    var rotationSelected
     var limit = parseInt(req.query.limit)
     var skip = parseInt(req.query.skip)
         
     if (component_id === "main_board") {
         deleteOption = false
-        component = req.cube.main_board
+        componentCards = req.cube.main_board
+        componentName = "Main Board"
         mainBoardSelected = true
-        component_name = "Main Board"
+    }
+    if (component_id === "sideboard") {
+        deleteOption = false
+        componentCards = req.cube.sideboard
+        componentName = "Sideboard"
+        sideboardSelected = true
     }
     if (req.cube.modules.id(component_id)){
-        component = req.cube.modules.id(component_id).cards
-        component_name = req.cube.modules.id(component_id).module_name
+        component = req.cube.modules.id(component_id)
+        componentCards = component.cards
+        componentName = component.module_name
     } 
     if (req.cube.rotations.id(component_id)) {
-        component = req.cube.rotations.id(component_id).cards
-        component_name = req.cube.rotations.id(component_id).rotation_name
+        component = req.cube.rotations.id(component_id)
+        componentCards = component.cards
+        componentName = component.rotation_name
+        componentSize = component.size
+        rotationSelected = true
     }
 
     req.cube.modules.forEach(function (x) {
@@ -64,9 +78,9 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         }
     })
 
-    component = alphabeticalSort(component).slice(limit*skip, limit*(1 + skip))
+    componentCards = alphabeticalSort(componentCards).slice(limit*skip, limit*(1 + skip))
 
-    component.forEach(function (card) {
+    componentCards.forEach(function (card) {
         if (card.color_identity.includes("W")) {
             card.W = true
         }
@@ -85,15 +99,16 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
     })
 
     res.render('edit-cube', {
-        component: component,
-        component_name: component_name,
+        component_cards: componentCards,
+        component_name: componentName,
+        component_size: componentSize,
         cube_component: component_id,
         cube_description: req.cube.cube_description,
         cube_id: req.cube._id,
         cube_name: req.cube.cube_name,
         delete_option: deleteOption,
         main_board_selected: mainBoardSelected,
-        max_pages: parseInt(component.length / limit) + 1,
+        max_pages: parseInt(componentCards.length / limit) + 1,
         modules: req.cube.modules.sort(function (a, b) {
             var nameA = a.module_name.toUpperCase()
             var nameB = b.module_name.toUpperCase()
@@ -120,6 +135,8 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
             }
             return 0;
         }),
+        rotation_selected: rotationSelected,
+        sideboard_selected: sideboardSelected,
         title: "Edit Cube"
     })
 })
@@ -172,6 +189,8 @@ router.post('/cubes/edit-cube/add-card', creatorAccess, async (req, res) => {
 
     if (component_id === "main_board") {
         component = req.cube.main_board
+    } else if (component_id === "sideboard") {
+        component = req.cube.sideboard
     } else if (req.cube.modules.id(component_id)){
         component = req.cube.modules.id(component_id).cards
     } else {
@@ -213,6 +232,8 @@ router.post('/cubes/edit-cube/change-cmc', creatorAccess, async (req, res) => {
 
     if (component_id === "main_board") {
         component = req.cube.main_board
+    } else if (component_id === "sideboard") {
+        component = req.cube.sideboard
     } else if (req.cube.modules.id(component_id)){
         component = req.cube.modules.id(component_id).cards
     } else {
@@ -232,6 +253,8 @@ router.post('/cube/edit-cube/change-color-identity', creatorAccess, async (req, 
 
     if (component_id === "main_board") {
         component = req.cube.main_board
+    } else if (component_id === "sideboard") {
+        component = req.cube.sideboard
     } else if (req.cube.modules.id(component_id)){
         component = req.cube.modules.id(component_id).cards
     } else {
@@ -257,6 +280,8 @@ router.post('/cubes/edit-cube/change-component', creatorAccess, async (req, res)
 
     if (current_component_id === "main_board") {
         current_component = req.cube.main_board
+    } else if (current_component_id === "sideboard") {
+        current_component = req.cube.sideboard
     } else if (req.cube.modules.id(current_component_id)) {
         current_component = req.cube.modules.id(current_component_id).cards
     } else {
@@ -269,6 +294,8 @@ router.post('/cubes/edit-cube/change-component', creatorAccess, async (req, res)
     if (new_component_id != "delete_from_cube") {
         if (new_component_id === "main_board") {
             new_component = req.cube.main_board
+        } else if (new_component_id === "sideboard") {
+            new_component = req.cube.sideboard
         } else if (req.cube.modules.id(new_component_id)){
             new_component = req.cube.modules.id(new_component_id).cards
         } else {
@@ -307,6 +334,13 @@ router.post('/cubes/edit-cube/change-cube-info', authentication, async (req, res
     }
 })
 
+// change the number of cards from a rotation that are included in a draft's pool
+router.post('/cubes/edit-cube/change-rotation-size', creatorAccess, async (req, res) => {
+    var component = req.cube.rotations.id(req.body.cube_component)
+    component.size = req.body.rotation_size
+    await req.cube.save()
+})
+
 // change the printing of a card in the cube
 router.post('/cubes/edit-cube/change-set', creatorAccess, async (req, res) => {
     
@@ -315,6 +349,8 @@ router.post('/cubes/edit-cube/change-set', creatorAccess, async (req, res) => {
 
     if (component_id === "main_board") {
         component = req.cube.main_board
+    } else if (component_id === "sideboard") {
+        component = req.cube.sideboard
     } else if (req.cube.modules.id(component_id)){
         component = req.cube.modules.id(component_id).cards
     } else {
@@ -437,12 +473,18 @@ router.get('/cubes/view-cube', creatorAccess, async (req, res) => {
     var component
     var component_id = req.query.cube_component
     var componentName
-    var main_board_selected
+    var mainBoardSelected
+    var sideboardSelected
 
     if (component_id === "main_board") {
         component = req.cube.main_board
         componentName = "Main Board"
-        main_board_selected = true
+        mainBoardSelected = true
+    }
+    if (component_id === "sideboard") {
+        component = req.cube.sideboard
+        componentName = "Sideboard"
+        sideboardSelected = true
     }
     if (req.cube.modules.id(component_id)){
         component = req.cube.modules.id(component_id).cards
@@ -485,10 +527,33 @@ router.get('/cubes/view-cube', creatorAccess, async (req, res) => {
         creator_access: creator_access,
         cube: req.cube,
         cube_component: component_id,
-        main_board_selected: main_board_selected,
+        main_board_selected: mainBoardSelected,
+        modules: req.cube.modules.sort(function (a, b) {
+            var nameA = a.module_name.toUpperCase()
+            var nameB = b.module_name.toUpperCase()
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        }),
         monocolor_arrays: sortedCards.monocolor,
         multicolor_arrays: sortedCards.multicolor,
         multicolor_count: multicolorCount,
+        rotations: req.cube.rotations.sort(function (a, b) {
+            var nameA = a.rotation_name.toUpperCase()
+            var nameB = b.rotation_name.toUpperCase()
+            if (nameA < nameB) {
+                return -1
+            }
+            if (nameA > nameB) {
+                return 1
+            }
+            return 0;
+        }),
+        sideboard_selected: sideboardSelected,
         title: "View Cube"
     })
 })

@@ -81,6 +81,19 @@ function submitAddRotation() {
     })
 }
 
+function submitChangeRotationSize() {
+    jQuery.ajax({
+        type: "POST",
+        url: '/cubes/edit-cube/change-rotation-size',
+        xhrFields: { withCredentials: true },
+        data: {
+            rotation_size: event.target.value,
+            cube_id: event.target.parentNode.children[0].value,
+            cube_component: event.target.parentNode.children[1].value
+        }
+    })
+}
+
 function submitCmcChange() {
     jQuery.ajax({
         type: "POST",
@@ -171,4 +184,13 @@ function submitCubeInfoChange() {
             form.children[2].focus()
         }
     })
+}
+
+function verifyDelete() {
+    event.preventDefault()
+    var sure = confirm("Are you sure you want to delete this component?  This action cannot be undone.")
+
+    if (sure) {
+        event.target.submit()
+    }
 }

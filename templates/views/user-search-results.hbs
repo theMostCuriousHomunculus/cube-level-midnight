@@ -26,10 +26,25 @@
                     </p>
                 </td>
                 <td>
-                    <form action="/users/send-bud-request" method="post">
-                        <input type="hidden" name="potential_bud_id" value={{this._id}}>
-                        <input type="submit" class="fancy_button" style="display: block; text-align: center; width: calc(100% - 1.3vw);" value="Send Bud Request">
-                    </form>
+                    {{#if this.isBud}}
+                        <p class="user_table">Already Buds!  Nice!</p>
+                    {{/if}}
+                    {{#if this.isAspiringBud}}
+                        <p class="user_table">Friend Request Already Received!</p>
+                    {{/if}}
+                    {{#if this.isPendingBud}}
+                        <p class="user_table">Friend Request Already Sent!</p>
+                    {{/if}}
+                    {{#unless this.isBud}}
+                        {{#unless this.isAspiringBud}}
+                            {{#unless this.isPendingBud}}
+                                <form action="/users/send-bud-request" method="post">
+                                    <input type="hidden" name="potential_bud_id" value={{this._id}}>
+                                    <input type="submit" class="fancy_button" style="display: block; text-align: center; width: calc(100% - 10px);" value="Send Bud Request">
+                                </form>
+                            {{/unless}}
+                        {{/unless}}
+                    {{/unless}}
                 </td>
             </tr>
             {{/each}}

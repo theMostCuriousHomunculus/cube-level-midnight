@@ -93,6 +93,7 @@ const cubeSchema = new mongoose.Schema({
         maxlength: 30
     },
     main_board: [cardSchema],
+    sideboard: [cardSchema],
     modules: [moduleSchema],
     rotations: [rotationSchema],
     cube_creator: {

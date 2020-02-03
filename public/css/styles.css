@@ -261,7 +261,7 @@ textarea {
     cursor: pointer;
     font-size: 1vw;
     margin: 0;
-    padding: 5px 0;
+    padding: 3px 0;
     width: 42%;
 }
 
@@ -360,6 +360,8 @@ textarea {
 #header a {
     float: right;
     margin: 0;
+    padding-left: 0;
+    padding-right: 0;
     text-align: center;
     width: calc(100/12 * 1vw);
 }
