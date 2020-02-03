@@ -100,6 +100,14 @@ select {
     margin: 10px 0;
 }
 
+select.long {
+    width: 21em;
+}
+
+select.short {
+    width: 5em;
+}
+
 table {
     cursor: default;
 }
@@ -156,6 +164,18 @@ textarea {
     border-width: 2px;
     float: left;
     overflow: hidden;
+}
+
+.avatar_container.large {
+    height: 150px;
+    margin: 10px;
+    width: 150px;
+}
+
+.avatar_container.small {
+    height: 75px;
+    margin: 5px;
+    width: 75px;
 }
 
 .color_container {
@@ -382,6 +402,12 @@ textarea {
     margin: 0 10px;
     padding: 0;
     line-height: 200%;
+}
+
+#logout_button {
+    position: absolute;
+    bottom: 10px;
+    left: 191px;
 }
 
 #relationship_container div {

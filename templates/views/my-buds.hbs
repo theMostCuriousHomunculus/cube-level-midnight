@@ -15,7 +15,7 @@
         <form action="/users/search-users" method="get" class="generic_container">
             <h3>Find a New Bud!</h3>
             <label for="account_name">Account Name: </label>
-            <input type="text" name="account_name" id="account_name" style="width: 21em;" autocomplete="off" required>
+            <input type="text" name="account_name" id="account_name" autocomplete="off" required>
             <input type="submit" class="fancy_button" value="Search!">
         </form>
 
@@ -29,7 +29,7 @@
                     {{#each buds}}
                     <tr>
                         <td>
-                            <div class="avatar_container" style="height: 5vw; width: 5vw;">
+                            <div class="avatar_container small">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
                             <p class="user_table">
@@ -55,7 +55,7 @@
                     {{#each aspiring_buds}}
                     <tr>
                         <td>
-                            <div class="avatar_container" style="height: 5vw; width: 5vw;">
+                            <div class="avatar_container small">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
                             <p class="user_table">
@@ -83,7 +83,7 @@
                     {{#each pending_buds}}
                     <tr>
                         <td>
-                            <div class="avatar_container" style="height: 5vw; width: 5vw;">
+                            <div class="avatar_container small">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
                             <p class="user_table">
@@ -104,7 +104,7 @@
                     {{#each dicks}}
                     <tr>
                         <td>
-                            <div class="avatar_container" style="height: 5vw; width: 5vw;">
+                            <div class="avatar_container small">
                                 <img src={{this.avatar}} class="avatar">
                             </div>
                             <p class="user_table">

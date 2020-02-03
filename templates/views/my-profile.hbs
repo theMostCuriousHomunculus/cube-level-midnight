@@ -11,7 +11,7 @@
         </div>
 
         <div class="generic_container" style="height: 11.4vw; position: relative;">
-            <div class="avatar_container" style="height: 10vw; margin: 0.65vw; width: 10vw;">
+            <div class="avatar_container large">
                 <img src={{avatar}} class="avatar">
             </div>
 
@@ -22,19 +22,19 @@
                 <input type="text" name="account_name" id="account_name" value="{{account_name}}" onchange="submitChangeAccountName()">
             </form>
 
-            <form action="/users/logout" method="post" style="position: absolute; bottom: 0.65vw; left: 12.5vw;">
+            <form action="/users/logout" method="post" id="logout_button">
                 <input type="submit" class="fancy_button" value="Logout">
             </form>
         </div>
 
         <form action="/users/change-avatar" method="post" id="change_avatar" class="generic_container" autocomplete="off" onsubmit="submitChangeAvatar()">
             <label for="card_to_search">Change Card Image Avatar:</label>
-            <input type="text" name="card_to_search" id="card_to_search" list="card_results" style="width: 21em;" onkeyup="scryfallCardSearch()" onchange="scryfallPrintSearch()" required>
+            <input type="text" name="card_to_search" id="card_to_search" list="card_results" onkeyup="scryfallCardSearch()" onchange="scryfallPrintSearch()" required>
             <datalist id="card_results">
             <!-- the search results from scryfall will populate here -->
             </datalist>
             <label for="selected_printing">Printing:</label>
-            <select name="selected_printing" id="selected_printing" style="width: 5em;" required>
+            <select name="selected_printing" id="selected_printing" class="short" required>
             <!-- the available printings will populate here -->
             </select>
             <input type="hidden" name="image" id="image">
