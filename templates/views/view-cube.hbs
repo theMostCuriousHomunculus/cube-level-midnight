@@ -14,7 +14,7 @@
 
         <div class="generic_container">
             {{#if creator_access}}
-                <a href="/cubes/edit-cube?cube_id={{cube_id}}&cube_component=main_board&limit=50&skip=0" style="float: right;">Edit this Cube!</a>
+                <a href="/cubes/edit-cube?cube_id={{cube._id}}&cube_component=main_board&limit=50&skip=0" style="float: right;">Edit this Cube!</a>
             {{/if}}
             <h2>Cube Name: {{cube.cube_name}}</h2>
             <h3>Cube Description:</h3>
