@@ -173,17 +173,20 @@ textarea {
     border-bottom-color: black;
     border-bottom-style: solid;
     border-bottom-width: 2px;
+    font-size: calc(7/6 * 1vw);
     margin: 0 1px;
     padding: 5px 0;
 }
 
 .color_container h3 {
-    line-height: 200%;
-    margin: 0 1px;
+    font-size: 1vw;
+    line-height: 100%;
+    margin: 10px 1px;
     padding: 5px 0;
 }
 
 .color_container p {
+    font-size: 0.9vw;
     line-height: 100%;
     margin: 0 1px;
     padding: 5px 0;

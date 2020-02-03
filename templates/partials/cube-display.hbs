@@ -1,106 +1,132 @@
 {{#each monocolor_arrays}}
     <div class="color_container" id="{{@key}}_container">
         <h2>{{@key}} ({{this.cards.length}})</h2>
-        <h3>Creatures ({{this.creatures.length}})</h3>
-        {{#each this.creatures}}
-            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                <img src="{{this.image}}" style="display: none;">
-                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-            </p>
-        {{/each}}
-        <h3>Instants ({{this.instants.length}})</h3>
-        {{#each this.instants}}
-            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                <img src="{{this.image}}" style="display: none;">
-                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-            </p>
-        {{/each}}
-        <h3>Sorceries ({{this.sorceries.length}})</h3>
-        {{#each this.sorceries}}
-            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                <img src="{{this.image}}" style="display: none;">
-                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-            </p>
-        {{/each}}
-        <h3>Enchantments ({{this.enchantments.length}})</h3>
-        {{#each this.enchantments}}
-            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                <img src="{{this.image}}" style="display: none;">
-                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-            </p>
-        {{/each}}
-        <h3>Artifacts ({{this.artifacts.length}})</h3>
-        {{#each this.artifacts}}
-            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                <img src="{{this.image}}" style="display: none;">
-                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-            </p>
-        {{/each}}
-        <h3>Lands ({{this.lands.length}})</h3>
-        {{#each this.lands}}
-            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                <img src="{{this.image}}" style="display: none;">
-                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-            </p>
-        {{/each}}
+        {{#if this.creatures.length}}
+            <h3>Creatures ({{this.creatures.length}})</h3>
+            {{#each this.creatures}}
+                <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                    <img src="{{this.image}}" style="display: none;">
+                    {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+                </p>
+            {{/each}}
+        {{/if}}
+        {{#if this.instants.length}}
+            <h3>Instants ({{this.instants.length}})</h3>
+            {{#each this.instants}}
+                <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                    <img src="{{this.image}}" style="display: none;">
+                    {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+                </p>
+            {{/each}}
+        {{/if}}
+        {{#if this.sorceries.length}}
+            <h3>Sorceries ({{this.sorceries.length}})</h3>
+            {{#each this.sorceries}}
+                <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                    <img src="{{this.image}}" style="display: none;">
+                    {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+                </p>
+            {{/each}}
+        {{/if}}
+        {{#if this.enchantments.length}}
+            <h3>Enchantments ({{this.enchantments.length}})</h3>
+            {{#each this.enchantments}}
+                <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                    <img src="{{this.image}}" style="display: none;">
+                    {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+                </p>
+            {{/each}}
+        {{/if}}
+        {{#if this.artifacts.length}}
+            <h3>Artifacts ({{this.artifacts.length}})</h3>
+            {{#each this.artifacts}}
+                <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                    <img src="{{this.image}}" style="display: none;">
+                    {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+                </p>
+            {{/each}}
+        {{/if}}
+        {{#if this.lands.length}}
+            <h3>Lands ({{this.lands.length}})</h3>
+            {{#each this.lands}}
+                <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                    <img src="{{this.image}}" style="display: none;">
+                    {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+                </p>
+            {{/each}}
+        {{/if}}
     </div>
 {{/each}}
 
 <div class="color_container" id="multicolor_container">
     <h2>Multicolor ({{multicolor_count}})</h2>
     {{#each multicolor_arrays}}
-        <h3>{{@key}} ({{this.cards.length}})</h3>
-        {{#each this.cards}}
-            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                <img src="{{this.image}}" style="display: none;">
-                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-            </p>
-        {{/each}}
+        {{#if this.cards.length}}
+            <h3>{{@key}} ({{this.cards.length}})</h3>
+            {{#each this.cards}}
+                <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                    <img src="{{this.image}}" style="display: none;">
+                    {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+                </p>
+            {{/each}}
+        {{/if}}
     {{/each}}
 </div>
 
 <div class="color_container" id="colorless_container">
     <h2>Colorless ({{colorless_arrays.cards.length}})</h2>
-    <h3>Creatures ({{colorless_arrays.creatures.length}})</h3>
-    {{#each colorless_arrays.creatures}}
-        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-            <img src="{{this.image}}" style="display: none;">
-            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-        </p>
-    {{/each}}
-    <h3>Instants ({{colorless_arrays.instants.length}})</h3>
-    {{#each colorless_arrays.instants}}
-        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-            <img src="{{this.image}}" style="display: none;">
-            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-        </p>
-    {{/each}}
-    <h3>Sorceries ({{colorless_arrays.sorceries.length}})</h3>
-    {{#each colorless_arrays.sorceries}}
-        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-            <img src="{{this.image}}" style="display: none;">
-            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-        </p>
-    {{/each}}
-    <h3>Enchantments ({{colorless_arrays.enchantments.length}})</h3>
-    {{#each colorless_arrays.enchantments}}
-        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-            <img src="{{this.image}}" style="display: none;">
-            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-        </p>
-    {{/each}}
-    <h3>Artifacts ({{colorless_arrays.artifacts.length}})</h3>
-    {{#each colorless_arrays.artifacts}}
-        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-            <img src="{{this.image}}" style="display: none;">
-            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-        </p>
-    {{/each}}
-    <h3>Lands ({{colorless_arrays.lands.length}})</h3>
-    {{#each colorless_arrays.lands}}
-        <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-            <img src="{{this.image}}" style="display: none;">
-            {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
-        </p>
-    {{/each}}
+    {{#if colorless_arrays.creatures.length}}
+        <h3>Creatures ({{colorless_arrays.creatures.length}})</h3>
+        {{#each colorless_arrays.creatures}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    {{/if}}
+    {{#if colorless_arrays.instants.length}}
+        <h3>Instants ({{colorless_arrays.instants.length}})</h3>
+        {{#each colorless_arrays.instants}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    {{/if}}
+    {{#if colorless_arrays.sorceries.length}}
+        <h3>Sorceries ({{colorless_arrays.sorceries.length}})</h3>
+        {{#each colorless_arrays.sorceries}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    {{/if}}
+    {{#if colorless_arrays.enchantments.length}}
+        <h3>Enchantments ({{colorless_arrays.enchantments.length}})</h3>
+        {{#each colorless_arrays.enchantments}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    {{/if}}
+    {{#if colorless_arrays.artifacts.length}}
+        <h3>Artifacts ({{colorless_arrays.artifacts.length}})</h3>
+        {{#each colorless_arrays.artifacts}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    {{/if}}
+    {{#if colorless_arrays.lands.length}}
+        <h3>Lands ({{colorless_arrays.lands.length}})</h3>
+        {{#each colorless_arrays.lands}}
+            <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
+                <img src="{{this.image}}" style="display: none;">
+                {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+            </p>
+        {{/each}}
+    {{/if}}
 </div>
