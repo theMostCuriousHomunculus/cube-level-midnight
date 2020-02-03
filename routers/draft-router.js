@@ -157,12 +157,15 @@ router.get('/draft/join-lobby', authentication, async (req, res) => {
 
     if (nextPack === 1 && lobby.drafters[drafterIndex].packs.length === 0) {
         // the drafter has made all of his picks and can now begin to build his deck
+        const { monocolor, multicolor, colorless } = colorSort(lobby.drafters[drafterIndex].picks)
         res.render('draft-lobby', {
+            colorless_arrays: colorless,
             drafters: lobby.drafters,
             finished: true,
             message: "Your picks:",
+            monocolor_arrays: monocolor,
+            multicolor_arrays: multicolor,
             refresh: false,
-            selections_as_color_arrays: colorSort(lobby.drafters[drafterIndex].picks),
             title: lobby.lobby_name
         })
     } else if (nextPack === 1) {

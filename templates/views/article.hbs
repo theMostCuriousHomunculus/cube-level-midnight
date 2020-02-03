@@ -11,17 +11,29 @@
         </div>
 
         <div class="generic_container">
-            <h4 class="timestamp">{{createdAt}}</h4>
+            <h4>Originally Posted on <span class="timestamp">{{createdAt}}</span></h4>
+            <h4>Last Edited on <span class="timestamp">{{updatedAt}}</span></h4>
 
-            <div>
-                {{{body}}}
-            </div>
+            {{#if admin_access}}
+                <form action="/blog/edit-post" method="post" style="overflow: hidden;">
+                    <input type="hidden" name="post_id" value={{post_id}}>
+                    <label for="post_title" style="display: block;">Post Title:</label>
+                    <input type="text" id="post_title" name="post_title" value="{{title}}" autocomplete="off">
+                    <label for="post_body" style="display: block;">Post Body:</label>
+                    <textarea id="post_body" name="body" autocomplete="off" style="height: 50vh; width: calc(100% - 1.7vw);">{{body}}</textarea>
+                    <input type="submit" class="fancy_button" style="float: right; margin-right: 0.65vw;" value="Edit Article">
+                </form>
+            {{else}}
+                <div>
+                    {{{body}}}
+                </div>
+            {{/if}}
         </div>
 
         <div class="generic_container">
             <form action="/blog/comment" method="post" class="subcontainer" style="overflow: hidden;">
                 <input type="hidden" name="post_id" value={{post_id}}>
-                <label for="comment_body">Let me have it:</label>
+                <label for="comment_body" style="font-weight: bold;">Let me have it:</label>
                 <textarea name="comment_body" id="comment_body" autocomplete="off" rows="3" style="width: calc(100% - 1.7vw)"></textarea>
                 <input type="submit" class="fancy_button" style="float: right; margin-right: 0.65vw;" value="Preach!!">
             </form>
@@ -45,6 +57,6 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
         <script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
-        <script src="/js/blog.js"></script>
+        <script src="/js/timestamp-format.js"></script>
     </body>
 </html>

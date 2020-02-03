@@ -16,22 +16,22 @@
             {{#if creator_access}}
                 <a href="/cubes/edit-cube?cube_id={{cube_id}}&cube_component=main_board&limit=50&skip=0" style="float: right;">Edit this Cube!</a>
             {{/if}}
-            <h2>Cube Name: {{cube_name}}</h2>
-            <h3>Cube Description: </h3>
-            <p>{{cube_description}}</p>
+            <h2>Cube Name: {{cube.cube_name}}</h2>
+            <h3>Cube Description:</h3>
+            <p>{{cube.cube_description}}</p>
         </div>
 
         <form action="/cubes/view-cube" method="get" class="generic_container">
             <div class="component_indicator">Currently Viewing {{component_name}}</div>
-            <input type="hidden" name="cube_id" value={{cube_id}}>
+            <input type="hidden" name="cube_id" value={{cube._id}}>
             <label for="cube_component">Switch To:</label>
             <select name="cube_component" value={{cube_component}} style="width: 30em;" onchange="genericSubmit()">
                 <option value="main_board" {{#if main_board_selected}}selected{{/if}}>Main Board</option>
                 {{!-- <option value="side_board">Side Board</option> --}}
-                {{#each modules}}
+                {{#each cube.modules}}
                     <option value={{this._id}} {{#if this.selected}}selected{{/if}}>{{this.module_name}} (Module)</option>
                 {{/each}}
-                {{#each rotations}}
+                {{#each cube.rotations}}
                     <option value={{this._id}} {{#if this.selected}}selected{{/if}}>{{this.rotation_name}} (Rotation)</option>
                 {{/each}}
             </select>

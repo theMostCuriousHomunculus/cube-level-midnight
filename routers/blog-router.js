@@ -13,7 +13,26 @@ router.get('/blog/compose', adminAccess, async (req, res) => {
     })
 })
 
-// this currently just drops a static post into the database
+// edit a blog article
+router.post('/blog/edit-post', adminAccess, async (req, res) => {
+    
+    try {
+        const post = await Post.findById(req.body.post_id)
+        post.body = req.body.body
+        post.post_title = req.body.post_title
+
+        await post.save()
+        res.status(202).redirect('/blog/article?article_id=' + post._id)
+    } catch(error) {
+        res.status(400).render('error', {
+            error: "There was an error updating the post.  Please try again.",
+            title: "Error!"
+        })
+    }
+
+})
+
+// post a new blog article
 router.post('/blog/post', adminAccess, async (req, res) => {
 
     try {
@@ -58,7 +77,7 @@ router.get('/blog/search', async (req, res) => {
 })
 
 // read a specific article
-router.get('/blog/article', async (req, res) => {
+router.get('/blog/article', adminAccess, async (req, res) => {
 
     const post = await Post.findById(req.query.article_id)
     var { comments } = post
@@ -71,14 +90,17 @@ router.get('/blog/article', async (req, res) => {
     })
 
     res.render('article', {
-        title: post.post_title,
-        createdAt: post.createdAt,
+        admin_access: admin_access,
         body: post.body,
+        comments: comments,
+        createdAt: post.createdAt,
         post_id: post._id,
-        comments: comments
+        title: post.post_title,
+        updatedAt: post.updatedAt
     })
 })
 
+// allows users to post a comment on a blog post
 router.post('/blog/comment', authentication, async (req, res) => {
 
     const post = await Post.findById(req.body.post_id)

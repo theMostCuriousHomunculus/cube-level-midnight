@@ -125,11 +125,11 @@
                         <input type="hidden" name="cube_id" value={{../cube_id}}>
                         <input type="hidden" name="card_id" value={{this._id}}>
                         <input type="hidden" name="cube_component" value={{../cube_component}}>
-                        <input type="checkbox" name="W" value="W" {{this.W}} onchange="submitColorIdentityChange()"><label class="color_label">W</label>
-                        <input type="checkbox" name="U" value="U" {{this.U}} onchange="submitColorIdentityChange()"><label class="color_label">U</label>
-                        <input type="checkbox" name="B" value="B" {{this.B}} onchange="submitColorIdentityChange()"><label class="color_label">B</label>
-                        <input type="checkbox" name="R" value="R" {{this.R}} onchange="submitColorIdentityChange()"><label class="color_label">R</label>
-                        <input type="checkbox" name="G" value="G" {{this.G}} onchange="submitColorIdentityChange()"><label class="color_label">G</label>
+                        <input type="checkbox" name="W" value="W" {{#if this.W}}checked{{/if}} onchange="submitColorIdentityChange()"><label class="color_label">W</label>
+                        <input type="checkbox" name="U" value="U" {{#if this.U}}checked{{/if}} onchange="submitColorIdentityChange()"><label class="color_label">U</label>
+                        <input type="checkbox" name="B" value="B" {{#if this.B}}checked{{/if}} onchange="submitColorIdentityChange()"><label class="color_label">B</label>
+                        <input type="checkbox" name="R" value="R" {{#if this.R}}checked{{/if}} onchange="submitColorIdentityChange()"><label class="color_label">R</label>
+                        <input type="checkbox" name="G" value="G" {{#if this.G}}checked{{/if}} onchange="submitColorIdentityChange()"><label class="color_label">G</label>
                     </form>
                 </td>
                 <td>
