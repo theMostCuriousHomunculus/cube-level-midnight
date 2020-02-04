@@ -32,6 +32,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
     var componentSize
     var deleteOption = true
     var mainBoardSelected
+    var maxPages
     var sideboardSelected
     var rotationSelected
     var limit = parseInt(req.query.limit)
@@ -61,6 +62,8 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         componentSize = component.size
         rotationSelected = true
     }
+
+    maxPages = parseInt(componentCards.length / limit) + 1
 
     req.cube.modules.forEach(function (x) {
         if (x._id == component_id) {
@@ -108,7 +111,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         cube_name: req.cube.cube_name,
         delete_option: deleteOption,
         main_board_selected: mainBoardSelected,
-        max_pages: parseInt(componentCards.length / limit) + 1,
+        max_pages: maxPages,
         modules: req.cube.modules.sort(function (a, b) {
             var nameA = a.module_name.toUpperCase()
             var nameB = b.module_name.toUpperCase()
