@@ -12,12 +12,12 @@
 
         <form action="/cubes/create" method="post" class="generic_container">
             <h2>Create a new cube!</h2>
-            <label for="cube_name" style="display: block; font-weight: bold;">Cube Name:</label>
-            <input type="text" name="cube_name" id="cube_name" required autocomplete="off" maxlength="30" style="width: 21em;"><br>
-            <label for="cube_description" style="display: block; font-weight: bold;">Cube Description:</label>
-            <div style="display: inline-box; position: relative;">
+            <label for="cube_name">Cube Name:</label>
+            <input type="text" name="cube_name" id="cube_name" required autocomplete="off" maxlength="30"><br>
+            <label for="cube_description">Cube Description:</label>
+            <div >
                 <textarea name="cube_description" id="cube_description" autocomplete="off" maxlength="300" rows="5" cols="60"></textarea>
-                <input type="submit" class="fancy_button" style="height: fit-content; position: absolute; bottom: 0.325vw;" value="Create This Cube!">
+                <input type="submit" class="fancy_button"  value="Create This Cube!">
             </div>
         </form>
 
@@ -25,7 +25,7 @@
             <h2>Existing Cubes:</h2>
             <div id="cube_links">
             {{#each cubes}}
-                <div style="margin: 0.65vw; padding: 0.65vw;"><a href="/cubes/view-cube?cube_id={{this._id}}&cube_component=main_board">{{this.cube_name}}</a></div>
+                <div ><a href="/cubes/view-cube?cube_id={{this._id}}&cube_component=main_board">{{this.cube_name}}</a></div>
             {{/each}}
             </div>
         </div>

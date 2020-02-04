@@ -15,12 +15,12 @@
         {{>terminology}}
 
         <div class="generic_container">
-            <a href="/cubes/view-cube?cube_id={{cube_id}}&cube_component={{cube_component}}" style="float: right;">Back to View Mode</a>
+            <a href="/cubes/view-cube?cube_id={{cube_id}}&cube_component={{cube_component}}">Back to View Mode</a>
             <form action="/cubes/edit-cube/change-cube-info" method="post" id="cube_info_form" onsubmit="event.preventDefault()">
                 <input type="hidden" name="cube_id" value={{cube_id}}>
-                <label for="cube_name" style="display: block; font-weight: bold;">Cube Name:</label>
+                <label for="cube_name" >Cube Name:</label>
                 <input type="text" name="cube_name" id="cube_name" value="{{cube_name}}" required autocomplete="off" onchange="submitCubeInfoChange()">
-                <label for="cube_description" style="display: block; font-weight: bold;">Cube Description:</label>
+                <label for="cube_description">Cube Description:</label>
                 <textarea name="cube_description" id="cube_description" autocomplete="off" maxlength="300" rows="5" cols="60" onchange="submitCubeInfoChange()">{{cube_description}}</textarea>
             </form>
         </div>
@@ -50,14 +50,14 @@
                         <input type="text" name="changed_component_name" id="changed_component_name" value="{{component_name}}" maxlength="30" onchange="submitComponentChange()">
                     </form>
                     {{#if rotation_selected}}
-                        <form action="/cubes/edit-cube/change-rotation-size" method="post" style="display: inline;">
+                        <form action="/cubes/edit-cube/change-rotation-size" method="post">
                             <input type="hidden" name="cube_id" value={{cube_id}}>
                             <input type="hidden" name="cube_component" value={{cube_component}}>
                             <label for="rotation_size"><i class="fas fa-info-circle" onmouseover="explainSize()" onmouseout="clearTerm()"></i> Rotation Size:</label>
                             <input type="number" id="rotation_size" name="rotation_size" min="0" max="{{component_cards.length}}" step="1" value={{component_size}} onchange="submitChangeRotationSize()">
                         </form>
                     {{/if}}
-                    <form action="/cubes/edit-cube/delete-component" method="post" id="delete_component_form" style="display: inline; float: right; margin-right: 10px;" onsubmit="verifyDelete()">
+                    <form action="/cubes/edit-cube/delete-component" method="post" id="delete_component_form"  onsubmit="verifyDelete()">
                         <input type="hidden" name="cube_id" value={{cube_id}}>
                         <input type="hidden" name="cube_component" value={{cube_component}}>
                         <input type="submit" class="fancy_button" value="Delete {{component_name}}">
@@ -112,21 +112,21 @@
 
         {{>pagination}}
 
-        <table width="100%">
+        <table>
             <tr class="header_row">
-                <th width="25%">Card Name</th>
-                <th width="20%">Color Identity</th>
-                <th width="8%">CMC</th>
-                <th width="12%">Set Name</th>
-                <th width="25%">Move To / Delete</th>
-                <th width="10%">Purchase</th>
+                <th >Card Name</th>
+                <th >Color Identity</th>
+                <th>CMC</th>
+                <th >Set Name</th>
+                <th >Move To / Delete</th>
+                <th >Purchase</th>
             </tr>
             {{#each component_cards}}
             <tr>
                 <td onmouseover="displayImage()" onmouseout="clearImage()">
                     {{this.name}}
-                    <img src="{{this.image}}" style="display: none;">
-                    {{#if this.back_image}}<img src="{{this.back_image}}" style="display: none;">{{/if}}
+                    <img src="{{this.image}}" >
+                    {{#if this.back_image}}<img src="{{this.back_image}}">{{/if}}
                 </td>
                 <td>
                     <form action="/cube/edit-cube/change-color-identity" method="post">

@@ -15,13 +15,13 @@
             <h4>Last Edited on <span class="timestamp">{{updatedAt}}</span></h4>
 
             {{#if admin_access}}
-                <form action="/blog/edit-post" method="post" style="overflow: hidden;">
+                <form action="/blog/edit-post" method="post" >
                     <input type="hidden" name="post_id" value={{post_id}}>
-                    <label for="post_title" style="display: block;">Post Title:</label>
+                    <label for="post_title" >Post Title:</label>
                     <input type="text" id="post_title" name="post_title" value="{{title}}" autocomplete="off">
-                    <label for="post_body" style="display: block;">Post Body:</label>
-                    <textarea id="post_body" name="body" autocomplete="off" style="height: 50vh; width: calc(100% - 1.7vw);">{{body}}</textarea>
-                    <input type="submit" class="fancy_button" style="float: right; margin-right: 0.65vw;" value="Edit Article">
+                    <label for="post_body" >Post Body:</label>
+                    <textarea id="post_body" name="body" autocomplete="off" >{{body}}</textarea>
+                    <input type="submit" class="fancy_button"  value="Edit Article">
                 </form>
             {{else}}
                 <div>
@@ -31,22 +31,22 @@
         </div>
 
         <div class="generic_container">
-            <form action="/blog/comment" method="post" class="subcontainer" style="overflow: hidden;">
+            <form action="/blog/comment" method="post" class="subcontainer" >
                 <input type="hidden" name="post_id" value={{post_id}}>
-                <label for="comment_body" style="font-weight: bold;">Let me have it:</label>
-                <textarea name="comment_body" id="comment_body" autocomplete="off" rows="3" style="width: calc(100% - 1.7vw)"></textarea>
-                <input type="submit" class="fancy_button" style="float: right; margin-right: 0.65vw;" value="Preach!!">
+                <label for="comment_body" >Let me have it:</label>
+                <textarea name="comment_body" id="comment_body" autocomplete="off" rows="3" ></textarea>
+                <input type="submit" class="fancy_button"  value="Preach!!">
             </form>
 
             <div class="subcontainer">
                 {{#each comments}}
-                    <div class="avatar_container" style="height: 5vw; margin: 0.65vw; width: 5vw;">
+                    <div class="avatar_container">
                         <img src={{this.avatar}} class="avatar">
                     </div>
                     <h3>{{this.account_name}}</h3>
-                    <h4 class="timestamp" style="line-height: 0%;">{{this.createdAt}}</h4>
-                    <p style="margin-top: 2.07vw; word-wrap: break-word;">{{this.body}}</p>
-                    <br style="clear: left;">
+                    <h4 class="timestamp" >{{this.createdAt}}</h4>
+                    <p >{{this.body}}</p>
+                    <br>
                 {{/each}}
             </div>
         </div>        

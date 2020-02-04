@@ -14,7 +14,7 @@
 
         <div class="generic_container">
             {{#if creator_access}}
-                <a href="/cubes/edit-cube?cube_id={{cube._id}}&cube_component={{cube_component}}&limit=50&skip=0" style="float: right;">Edit this Cube!</a>
+                <a href="/cubes/edit-cube?cube_id={{cube._id}}&cube_component={{cube_component}}&limit=50&skip=0">Edit this Cube!</a>
             {{/if}}
             <h2>Cube Name: {{cube.cube_name}}</h2>
             <h3>Cube Description:</h3>
@@ -25,7 +25,7 @@
             <div class="component_indicator">Currently Viewing {{component_name}}</div>
             <input type="hidden" name="cube_id" value={{cube._id}}>
             <label for="cube_component">Switch To:</label>
-            <select name="cube_component" value={{cube_component}} style="width: 30em;" onchange="genericSubmit()">
+            <select name="cube_component" value={{cube_component}}  onchange="genericSubmit()">
                 <option value="main_board" {{#if main_board_selected}}selected{{/if}}>Main Board</option>
                 <option value="sideboard" {{#if sideboard_selected}}selected{{/if}}>Side Board</option>
                 {{#each modules}}

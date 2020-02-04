@@ -10,10 +10,10 @@
             {{>header}}
         </div>
 
-        <table width="100%">
+        <table>
             <tr class="header_row">
-                <th width="60%">User Name</th>
-                <th width="40%">Send Bud Request</th>
+                <th>User Name</th>
+                <th>Send Bud Request</th>
             </tr>
             {{#each matching_users}}
             <tr>
@@ -40,7 +40,7 @@
                             {{#unless this.isPendingBud}}
                                 <form action="/users/send-bud-request" method="post">
                                     <input type="hidden" name="potential_bud_id" value={{this._id}}>
-                                    <input type="submit" class="fancy_button" style="display: block; text-align: center; width: calc(100% - 10px);" value="Send Bud Request">
+                                    <input type="submit" class="fancy_button"  value="Send Bud Request">
                                 </form>
                             {{/unless}}
                         {{/unless}}

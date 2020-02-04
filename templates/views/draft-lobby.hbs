@@ -13,49 +13,49 @@
 
         <div id="draft_lobby_main_content">
             <div>
-                <h2 style="text-align: center; text-decoration: underline;">Drafters</h2>
+                <h2>Drafters</h2>
                 {{#each drafters}}
-                    <div class="avatar_container" style="border-color: rgb(0,0,0) !important; float: none !important; height: 10vw; margin: 0 auto !important; width: 10vw;">
+                    <div class="avatar_container" >
                         <img src={{this.avatar}} class="avatar">
                     </div>
-                    <p style="text-align: center; text-indent: 0; clear: left; font-weight: bold;">
+                    <p>
                         {{this.account_name}}
                     </p>
                 {{/each}}
             </div>
 
-            <div style="padding-left: 0.65vw; padding-right: 0.65vw;">
+            <div>
                 <h2>{{message}}</h2>
 
                 {{#if finished}}
                     {{#each monocolor_arrays}}
                         {{#if this.cards.length}}
-                            <div style="border: none; padding-left: 0.65vw; padding-right: 0.65vw;">
-                                <h3 style="margin-bottom: 0.325vw; margin-left: 0; margin-top: 0.325vw; text-align: center;">{{@key}} ({{this.cards.length}})</h3>
+                            <div >
+                                <h3 >{{@key}} ({{this.cards.length}})</h3>
                                 {{#each this.cards}}
-                                    <img src={{this.image}} height="285px" />
-                                    {{#if this.back_image}}<img src={{this.back_image}} height="285px" />{{/if}}
+                                    <img src={{this.image}}  />
+                                    {{#if this.back_image}}<img src={{this.back_image}}  />{{/if}}
                                 {{/each}}
                             </div>
                         {{/if}}
                     {{/each}}
                     {{#each multicolor_arrays}}
                         {{#if this.cards.length}}
-                            <div style="border: none; padding-left: 0.65vw; padding-right: 0.65vw;">
-                                <h3 style="margin-bottom: 0.325vw; margin-left: 0; margin-top: 0.325vw; text-align: center;">{{@key}} ({{this.cards.length}})</h3>
+                            <div >
+                                <h3 >{{@key}} ({{this.cards.length}})</h3>
                                 {{#each this.cards}}
-                                    <img src={{this.image}} height="285px" />
-                                    {{#if this.back_image}}<img src={{this.back_image}} height="285px" />{{/if}}
+                                    <img src={{this.image}}  />
+                                    {{#if this.back_image}}<img src={{this.back_image}}  />{{/if}}
                                 {{/each}}
                             </div>
                         {{/if}}
                     {{/each}}
                     {{#if colorless_arrays.cards.length}}
-                        <div style="border: none; padding-left: 0.65vw; padding-right: 0.65vw;">
-                            <h3 style="margin-bottom: 0.325vw; margin-left: 0; margin-top: 0.325vw; text-align: center;">Colorless ({{colorless_arrays.cards.length}})</h3>
+                        <div >
+                            <h3 >Colorless ({{colorless_arrays.cards.length}})</h3>
                             {{#each colorless_arrays.cards}}
-                                <img src={{this.image}} height="285px" />
-                                {{#if this.back_image}}<img src={{this.back_image}} height="285px" />{{/if}}
+                                <img src={{this.image}}  />
+                                {{#if this.back_image}}<img src={{this.back_image}}  />{{/if}}
                             {{/each}}
                         </div>
                     {{/if}}
@@ -63,8 +63,8 @@
 
                 {{#each cards}}
                     <button value={{this._id}} data-card_name="{{this.name}}" class="image_as_button" onclick="draftCard()">
-                        <img src={{this.image}} height="100%" />
-                        {{#if this.back_image}}<img src={{this.back_image}} height="100%" />{{/if}}
+                        <img src={{this.image}}  />
+                        {{#if this.back_image}}<img src={{this.back_image}}  />{{/if}}
                     </button>
                 {{/each}}
             </div>
