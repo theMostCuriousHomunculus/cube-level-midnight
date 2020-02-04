@@ -1,0 +1,15 @@
+# This is just a note about what colors/fonts/etc to use on the app.
+
+# - Colors: 
+    . #ed3622 dark orange
+    . #f9aa27 dark yellow
+    . #ebebed dark silver
+    . #040205 black outline
+    . #45223c purple accent
+    
+# - Fonts:
+    . Heading/Larger
+    . Body Copy
+    . Accent fonts
+    
+    
