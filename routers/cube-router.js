@@ -110,6 +110,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         cube_id: req.cube._id,
         cube_name: req.cube.cube_name,
         delete_option: deleteOption,
+        limit: limit,
         main_board_selected: mainBoardSelected,
         max_pages: maxPages,
         modules: req.cube.modules.sort(function (a, b) {
@@ -140,6 +141,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         }),
         rotation_selected: rotationSelected,
         sideboard_selected: sideboardSelected,
+        skip: skip,
         title: "Edit Cube"
     })
 })
@@ -202,7 +204,7 @@ router.post('/cubes/edit-cube/add-card', creatorAccess, async (req, res) => {
 
     component.push(card)
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id + '&limit=50&skip=0')
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id + '&limit=' + req.body.limit + '&skip=' + req.body.skip)
 })
 
 // add a module to the cube
@@ -308,7 +310,7 @@ router.post('/cubes/edit-cube/change-component', creatorAccess, async (req, res)
     }
 
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + current_component_id + '&limit=50&skip=0')
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + current_component_id + '&limit=' + req.body.limit + '&skip=' + req.body.skip)
 })
 
 // change a cube's info
