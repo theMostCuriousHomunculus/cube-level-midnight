@@ -27,7 +27,7 @@
             <label for="cube_component">Switch To:</label>
             <select name="cube_component" value={{cube_component}}  onchange="genericSubmit()">
                 <option value="main_board" {{#if main_board_selected}}selected{{/if}}>Main Board</option>
-                <option value="sideboard" {{#if sideboard_selected}}selected{{/if}}>Side Board</option>
+                <option value="sideboard" {{#if sideboard_selected}}selected{{/if}}>Sideboard</option>
                 {{#each modules}}
                     <option value={{this._id}} {{#if this.selected}}selected{{/if}}>{{this.module_name}} (Module)</option>
                 {{/each}}

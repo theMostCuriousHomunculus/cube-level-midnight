@@ -346,7 +346,6 @@ router.post('/cubes/edit-cube/change-rotation-size', creatorAccess, async (req, 
 
 // change the printing of a card in the cube
 router.post('/cubes/edit-cube/change-set', creatorAccess, async (req, res) => {
-    
     var component
     var component_id = req.body.cube_component
 
@@ -368,7 +367,7 @@ router.post('/cubes/edit-cube/change-set', creatorAccess, async (req, res) => {
     cardToChange.purchase_link = req.body.changed_purchase_link
     cardToChange.set = req.body.changed_printing
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id + '&limit=50&skip=0')
+    res.status(202).send()
 })
 
 // check if a supplied module name already exists in that cube
