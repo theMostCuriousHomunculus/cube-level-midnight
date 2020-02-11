@@ -8,7 +8,7 @@ require('../db/mongoose')
 
 // use "/Users/Casey/mongodb/bin/mongod.exe --dbpath=/Users/Casey/mongodb-data" to start mongodb
 
-//Define paths for Express configuration
+// Define paths for Express configuration
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
@@ -25,13 +25,13 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-    if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'POST, PATCH, DELETE, GET')
-        return res.status(200).json({})
-    }
-    next()
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'POST, PATCH, DELETE, GET')
+    return res.status(200).json({})
+  }
+  next()
 })
 
 // setup views and partials directories
@@ -48,17 +48,29 @@ const draftRouter = require('../routers/draft-router')
 
 // render the homepage
 app.get('/', authentication, async (req, res) => {
-    res.render('home', {
-        account_name: req.user.account_name,
-        title: "Home"
-    })
+  res.render('home', {
+    account_name: req.user.account_name,
+    title: 'Home'
+  })
 })
 
 // render the welcome page
 app.get('/welcome', async (req, res) => {
-    res.render('welcome', {
-        title: "Welcome"
-    })
+  res.render('welcome', {
+    title: 'Welcome'
+  })
+})
+
+app.get('/login', async (req, res) => {
+  res.render('login', {
+    title: 'Login'
+  })
+})
+
+app.get('/register', async (req, res) => {
+  res.render('register', {
+    title: 'Register'
+  })
 })
 
 app.use(cubeRouter)
@@ -67,5 +79,5 @@ app.use(blogRouter)
 app.use(draftRouter)
 
 app.listen(port, () => {
-    console.log('Server is up on port ' + port)
+  console.log('Server is up on port ' + port)
 })

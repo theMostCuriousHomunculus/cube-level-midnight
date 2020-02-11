@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Cube Level Midnight</title>
-        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
-        <script src="https://kit.fontawesome.com/e3b2b11911.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
+{{>head}}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+{{>header}}
+{{>sidebar}}
 
-        <div id="header">
-            {{>header}}
+  <section id="main-content">
+    <section class="wrapper">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="page-header"><i class="fa fa fa-bars"></i> Home</h3>
+          <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+          </ol>
         </div>
-
+      </div>
+      
         {{>card_hover}}
         {{>terminology}}
 
@@ -190,17 +195,12 @@
             {{/each}}
         </table>
 
-        {{>pagination}}
+    
 
-        <div id="footer">
-            {{>footer}}
-        </div>
+      </section>
+    </section>    
+  </section>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-        <script src="/js/form-submissions.js"></script>
-        <script src="/js/image-preview.js"></script>
-        <script src="/js/scryfall-requests-ajax.js"></script>
-        <script src="/js/terminology.js"></script>
-    </body>
-</html>
+
+  {{>footer}}
+  {{>foot}}

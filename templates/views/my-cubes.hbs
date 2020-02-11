@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Cube Level Midnight</title>
-        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
+{{>head}}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+{{>header}}
+{{>sidebar}}
 
-        <div id="header">
-            {{>header}}
+  <section id="main-content">
+    <section class="wrapper">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="page-header"><i class="fa fa fa-bars"></i> Home</h3>
+          <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+          </ol>
         </div>
-
+      </div>
         <form action="/cubes/create" method="post" class="generic_container">
             <h2>Create a new cube!</h2>
             <label for="cube_name">Cube Name:</label>
@@ -30,9 +35,13 @@
             </div>
         </div>
 
-        <div id="footer">
-            {{>footer}}
-        </div>
+      </section>
+    </section>    
+  </section>
+  
+  
+  {{>footer}}
+{{>foot}}
 
-    </body>
-</html>
+
+  

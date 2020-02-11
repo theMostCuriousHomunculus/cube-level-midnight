@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Cube Level Midnight</title>
-        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
 
-        <div id="header">
-            {{>header}}
-        </div>
+        {{>head}}
+        <body>
+        <!-- container section start -->
+        <section id="container" class="">
+        {{>header}}
+        {{>sidebar}}
 
+          <section id="main-content">
+            <section class="wrapper">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h3 class="page-header"><i class="fa fa fa-bars"></i> Home</h3>
+                  <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+                  </ol>
+                </div>
+              </div>
+              
         {{>card_hover}}
 
         <div class="generic_container">
@@ -40,13 +47,10 @@
         <div id="cube_display">
             {{>cube_display}}
         </div>
-
-        <div id="footer">
-            {{>footer}}
-        </div>
-
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-        <script src="/js/image-preview.js"></script>
-        <script src="/js/form-submissions.js"></script>
-    </body>
-</html>
+      </section>
+    </section>    
+  </section>
+  
+  
+  {{>footer}}
+{{>foot}}

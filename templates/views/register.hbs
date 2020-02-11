@@ -1,0 +1,40 @@
+
+            {{>head}}
+            <body class="login-img3-body" style="background:#fff;">
+
+              <div class="container">
+
+                <form id="register_form" class="login-form subcontainer" action="/users/register" method="post" onsubmit="validateInfo()">
+                  <div class="login-wrap">
+                    <p class="login-img"><i class="fa fa-laptop"></i></p>
+                    <p>Create an account</p>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="icon_profile"></i></span>
+                      <input type="text" class="form-control" id="account_name"  name="account_name" maxlength="30" placeholder="Account name" autofocus autocomplete="off" required>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="icon_mail"></i></span>
+                      <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" autofocus autocomplete="off" required>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="icon_key"></i></span>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password" autocomplete="off" required >
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="icon_check_alt"></i></span>
+                      <input type="password" class="form-control" name="confirm_password" id="confirm_password" autocomplete="off" placeholder="Confirm password" required>
+                    </div>
+                  
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Create an account</button>
+                    <a href="/login" class="btn btn-info btn-lg btn-block " style="color:#fff!important;">Sign in</a>
+                    
+                  </div>
+                  
+                </form>
+              
+              </div>
+            </body>
+            {{>foot}}
+    
+  
+

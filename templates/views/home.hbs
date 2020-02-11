@@ -1,28 +1,41 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Cube Level Midnight</title>
-        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
 
-        <div id="header">
-            {{>header}}
-        </div>
+        {{>head}}
+        <body>
+        <!-- container section start -->
+        <section id="container" class="">
+        {{>header}}
+        {{>sidebar}}
+
+          <section id="main-content">
+            <section class="wrapper">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h3 class="page-header"><i class="fa fa fa-bars"></i> Home</h3>
+                  <ol class="breadcrumb">
+                    <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+                  </ol>
+                </div>
+              </div>
+              
+              <h1>Welcome to Cube Level Midnight, {{account_name}}!</h1>
+              <a href="/cubes/view-cube?cube_id=5e2d1636d9ab740017790705&cube_component=main_board">Casey's Cube</a>
+
+              <h2>About this Site</h2>
+              <p>Cube Level Midnight allows you to create and manage your Magic the Gathering cube and draft it with your buds.  Two unique features offered by this site are modules and rotations.  Modules and Rotations allow more varied drafting experiences without significantly diluting a cube's cardpool.</p>
+              <h2>Modules</h2>
+              <p>A module is a collection of cards that will either all be included in a draft or all be excluded from a draft.  If you want to support parasitic archetypes like tribal strategies, modules are a great option.  When you host a draft, you will be prompted to select which modules, if any, you wish to include.</p>
+              <h2>Rotations</h2>
+              <p>A rotation is a collection of cards from which a few will be randomly included in each draft while the rest are excluded.  If you want to increase variety in your drafts, rotations are a great option.  We recommend that rotations include cards that are the same color(s) and have similar CMCs and functions.</p>
+
+            </section>
+          </section>    
+        </section>
         
-        <h1>Welcome to Cube Level Midnight, {{account_name}}!</h1>
-        <a href="/cubes/view-cube?cube_id=5e2d1636d9ab740017790705&cube_component=main_board">Casey's Cube</a>
+        
+        {{>footer}}
+{{>foot}}
 
-        <h2>About this Site</h2>
-        <p>Cube Level Midnight allows you to create and manage your Magic the Gathering cube and draft it with your buds.  Two unique features offered by this site are modules and rotations.  Modules and Rotations allow more varied drafting experiences without significantly diluting a cube's cardpool.</p>
-        <h2>Modules</h2>
-        <p>A module is a collection of cards that will either all be included in a draft or all be excluded from a draft.  If you want to support parasitic archetypes like tribal strategies, modules are a great option.  When you host a draft, you will be prompted to select which modules, if any, you wish to include.</p>
-        <h2>Rotations</h2>
-        <p>A rotation is a collection of cards from which a few will be randomly included in each draft while the rest are excluded.  If you want to increase variety in your drafts, rotations are a great option.  We recommend that rotations include cards that are the same color(s) and have similar CMCs and functions.</p>
 
-        <div id="footer">
-            {{>footer}}
-        </div>
 
-    </body>
-</html>
+
+  

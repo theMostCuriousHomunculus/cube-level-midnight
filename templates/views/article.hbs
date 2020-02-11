@@ -1,14 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Cube Level Midnight</title>
-        <link href="/css/styles.css" type="text/css" rel="stylesheet" />
-    </head>
-    <body>
+{{>head}}
+<body>
+<!-- container section start -->
+<section id="container" class="">
+{{>header}}
+{{>sidebar}}
 
-        <div id="header">
-            {{>header}}
+  <section id="main-content">
+    <section class="wrapper">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="page-header"><i class="fa fa fa-bars"></i> Home</h3>
+          <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="/">Home</a></li>
+          </ol>
         </div>
+      </div>
 
         <div class="generic_container">
             <h4>Originally Posted on <span class="timestamp">{{createdAt}}</span></h4>
@@ -50,13 +56,10 @@
                 {{/each}}
             </div>
         </div>        
+      </section>
+    </section>    
+    </section>
 
-        <div id="footer">
-            {{>footer}}
-        </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-        <script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
-        <script src="/js/timestamp-format.js"></script>
-    </body>
-</html>
+    {{>footer}}
+    {{>foot}}

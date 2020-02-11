@@ -1,0 +1,33 @@
+
+            {{>head}}
+            <body class="login-img3-body" style="background:#fff;">
+
+              <div class="container">
+
+                <form class="login-form subcontainer" action="/users/login" method="post">
+                  <div class="login-wrap">
+                    <p class="login-img"><i class="icon_lock_alt"></i></p>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="icon_mail_alt"></i></span>
+                      <input type="text" class="form-control" name="email" placeholder="E-mail" id="login_email" autofocus autocomplete="off" required>
+                    </div>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                      <input type="password" class="form-control" name="password" placeholder="Password"  id="login_password" autocomplete="off" required>
+                    </div>
+                    <label class="checkbox">
+                            <input type="checkbox" value="remember-me"> Remember me
+                            <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
+                        </label>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
+                    <a href="/register" class="btn btn-info btn-lg btn-block" style="color:#fff!important;">Create an account</a>
+                  </div>
+                </form>
+              
+              </div>
+
+
+            </body>
+    {{>foot}}
+  
+
