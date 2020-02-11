@@ -110,6 +110,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         cube_id: req.cube._id,
         cube_name: req.cube.cube_name,
         delete_option: deleteOption,
+        limit: limit,
         main_board_selected: mainBoardSelected,
         max_pages: maxPages,
         modules: req.cube.modules.sort(function (a, b) {
@@ -140,6 +141,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
         }),
         rotation_selected: rotationSelected,
         sideboard_selected: sideboardSelected,
+        skip: skip,
         title: "Edit Cube"
     })
 })
@@ -202,7 +204,7 @@ router.post('/cubes/edit-cube/add-card', creatorAccess, async (req, res) => {
 
     component.push(card)
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id + '&limit=50&skip=0')
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id + '&limit=' + req.body.limit + '&skip=' + req.body.skip)
 })
 
 // add a module to the cube
@@ -308,7 +310,7 @@ router.post('/cubes/edit-cube/change-component', creatorAccess, async (req, res)
     }
 
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + current_component_id + '&limit=50&skip=0')
+    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + current_component_id + '&limit=' + req.body.limit + '&skip=' + req.body.skip)
 })
 
 // change a cube's info
@@ -346,7 +348,6 @@ router.post('/cubes/edit-cube/change-rotation-size', creatorAccess, async (req, 
 
 // change the printing of a card in the cube
 router.post('/cubes/edit-cube/change-set', creatorAccess, async (req, res) => {
-    
     var component
     var component_id = req.body.cube_component
 
@@ -368,7 +369,7 @@ router.post('/cubes/edit-cube/change-set', creatorAccess, async (req, res) => {
     cardToChange.purchase_link = req.body.changed_purchase_link
     cardToChange.set = req.body.changed_printing
     await req.cube.save()
-    res.redirect('/cubes/edit-cube?cube_id=' + req.cube._id + '&cube_component=' + component_id + '&limit=50&skip=0')
+    res.status(202).send()
 })
 
 // check if a supplied module name already exists in that cube
@@ -414,14 +415,11 @@ router.post('/cubes/edit-cube/delete-component', creatorAccess, async (req, res)
 // return the components of a cube (used when a user selects a cube to draft)
 router.get('/cubes/find-cube-components', creatorAccess, async (req, res) => {
     
-    var moduleProjection = []
-    req.cube.modules.forEach(function(x) {
-        moduleProjection.push({
-            _id: x._id,
-            module_name: x.module_name
-        })
+    var cardCount = req.cube.main_board.length
+    req.cube.rotations.forEach(function(x) {
+        cardCount = cardCount + x.size
     })
-    res.status(202).send(moduleProjection)
+    res.status(202).send({ modules: req.cube.modules, card_count: cardCount })
 })
 
 // view existing cubes
@@ -476,6 +474,8 @@ router.get('/cubes/view-cube', creatorAccess, async (req, res) => {
     var component
     var component_id = req.query.cube_component
     var componentName
+    var expectedTotals
+    var expectedExtras = {}
     var mainBoardSelected
     var sideboardSelected
 
@@ -483,6 +483,21 @@ router.get('/cubes/view-cube', creatorAccess, async (req, res) => {
         component = req.cube.main_board
         componentName = "Main Board"
         mainBoardSelected = true
+
+        req.cube.rotations.forEach(function (x) {
+            x.sorted_cards = colorSort(x.cards)
+            for (var color in x.sorted_cards.monocolor) {
+                expectedExtras[color] = (expectedExtras[color] || 0) + (x.sorted_cards.monocolor[color].cards.length * x.size / x.cards.length)
+            }
+            for (var colorCombo in x.sorted_cards.multicolor) {
+                expectedExtras[colorCombo] = (expectedExtras[colorCombo] || 0) + (x.sorted_cards.multicolor[colorCombo].cards.length * x.size / x.cards.length)
+            }
+            expectedExtras.colorless = (expectedExtras.colorless || 0) + (x.sorted_cards.colorless.cards.length * x.size / x.cards.length)
+        })
+        for (var extra in expectedExtras) {
+            expectedExtras[extra] = Math.ceil(expectedExtras[extra] * 100) / 100
+        }
+        expectedTotals = JSON.parse(JSON.stringify(expectedExtras))
     }
     if (component_id === "sideboard") {
         component = req.cube.sideboard
@@ -492,27 +507,27 @@ router.get('/cubes/view-cube', creatorAccess, async (req, res) => {
     if (req.cube.modules.id(component_id)){
         component = req.cube.modules.id(component_id).cards
         componentName = req.cube.modules.id(component_id).module_name
+
+        req.cube.modules.forEach(function (x) {
+            if (x._id == component_id) {
+                x.selected = true
+            } else {
+                x.selected = false
+            }
+        })
     }
     if (req.cube.rotations.id(component_id)) {
         component = req.cube.rotations.id(component_id).cards
         componentName = req.cube.rotations.id(component_id).rotation_name
+
+        req.cube.rotations.forEach(function (x) {
+            if (x._id == component_id) {
+                x.selected = true
+            } else {
+                x.selected = false
+            }
+        })
     }
-
-    req.cube.modules.forEach(function (x) {
-        if (x._id == component_id) {
-            x.selected = true
-        } else {
-            x.selected = false
-        }
-    })
-
-    req.cube.rotations.forEach(function (x) {
-        if (x._id == component_id) {
-            x.selected = true
-        } else {
-            x.selected = false
-        }
-    })
         
     const sortedCards = colorSort(component)
 
@@ -524,12 +539,24 @@ router.get('/cubes/view-cube', creatorAccess, async (req, res) => {
         return count
     }
 
+    if (component_id === "main_board") {
+        for (var color in sortedCards.monocolor) {
+            expectedTotals[color] = expectedTotals[color] + sortedCards.monocolor[color].cards.length
+        }
+        for (var colorCombo in sortedCards.multicolor) {
+            expectedTotals[colorCombo] = expectedTotals[colorCombo] + sortedCards.multicolor[colorCombo].cards.length
+        }
+        expectedTotals.colorless = expectedTotals.colorless + sortedCards.colorless.cards.length
+    }
+
     res.render('view-cube', {
         colorless_arrays: sortedCards.colorless,
         component_name: componentName,
         creator_access: creator_access,
         cube: req.cube,
         cube_component: component_id,
+        expected_extras: expectedExtras,
+        expected_totals: expectedTotals,
         main_board_selected: mainBoardSelected,
         modules: req.cube.modules.sort(function (a, b) {
             var nameA = a.module_name.toUpperCase()

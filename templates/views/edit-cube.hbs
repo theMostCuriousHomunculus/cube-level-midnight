@@ -90,12 +90,12 @@
         </div>
 
         <form action="/cubes/edit-cube/add-card" method="post" id="add_card" class="generic_container" autocomplete="off" onsubmit="submitAddCard()">
-            <label for="card_to_add">Add Card to {{component_name}}: </label>
+            <label for="card_to_add">Add Card to {{component_name}}:</label>
             <input type="text" name="card_to_add" id="card_to_add" list="card_results" onkeyup="scryfallCardSearch()" onchange="scryfallPrintSearch()" required>
             <datalist id="card_results">
             <!-- the search results from scryfall will populate here -->
             </datalist>
-            <label for="selected_printing">Printing: </label>
+            <label for="selected_printing">Printing:</label>
             <select name="selected_printing" id="selected_printing" class="short" required>
             <!-- the available printings will populate here -->
             </select>
@@ -111,6 +111,8 @@
             <input type="hidden" name="purchase_link" id="purchase_link">
             <input type="hidden" name="toughness" id="toughness">
             <input type="hidden" name="type_line" id="type_line">
+            <input type="hidden" name="limit" value={{limit}}>
+            <input type="hidden" name="skip" value={{skip}}>
             <input type="submit" class="fancy_button" value="Add it!">
             <!-- the card's color identity will populate here -->
         </form>
@@ -129,9 +131,9 @@
             {{#each component_cards}}
             <tr>
                 <td onmouseover="displayImage()" onmouseout="clearImage()">
-                    {{this.name}}
-                    <img src="{{this.image}}" >
-                    {{#if this.back_image}}<img src="{{this.back_image}}">{{/if}}
+                    <span>{{this.name}}</span>
+                    <img src="{{this.image}}" data-face="front">
+                    {{#if this.back_image}}<img src="{{this.back_image}}" data-face="back">{{/if}}
                 </td>
                 <td>
                     <form action="/cube/edit-cube/change-color-identity" method="post">
@@ -155,11 +157,9 @@
                 </td>
                 <td>
                     <form action="/cubes/edit-cube/change-set" method="post">
-                        <input type="hidden" name="cube_id" value={{../cube_id}}>
                         <input type="hidden" name="card_id" value={{this._id}}>
-                        <input type="hidden" name="cube_component" value={{../cube_component}}>
-                        <input type="hidden" name="changed_image">
                         <input type="hidden" name="changed_back_image">
+                        <input type="hidden" name="changed_image">
                         <input type="hidden" name="changed_purchase_link">
                         <button type="button" class="lock" onclick="enablePrintChange()"><i class="fas fa-lock"></i></button>
                         <select name="changed_printing" class="changed_printing" value={{this.set}} class="short" data-oracleID={{this.oracle_id}} data-currentSet={{this.set}} onchange="submitPrintChange()" disabled>
@@ -172,6 +172,8 @@
                     <form action="/cubes/edit-cube/change-component" method="post">
                         <input type="hidden" name="cube_id" value={{../cube_id}}>
                         <input type="hidden" name="card_id" value={{this._id}}>
+                        <input type="hidden" name="limit" value={{../limit}}>
+                        <input type="hidden" name="skip" value={{../skip}}>
                         <input type="hidden" name="current_cube_component" value={{../cube_component}}>
                         <select name="new_cube_component" value={{../cube_component}} class="long" onchange="genericSubmit()">
                             <option value="main_board" {{#if ../main_board_selected}}selected{{/if}}>Main Board</option>

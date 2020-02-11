@@ -1,6 +1,6 @@
 {{#each monocolor_arrays}}
     <div class="color_container" id="{{@key}}_container">
-        <h2>{{@key}} ({{this.cards.length}})</h2>
+        <h2>{{@key}} ({{this.cards.length}}{{#if ../main_board_selected}} from Main Board; {{lookup ../expected_extras @key}} from Rotations; {{lookup ../expected_totals @key}} in Total{{/if}})</h2>
         {{#if this.creatures.length}}
             <h3>Creatures ({{this.creatures.length}})</h3>
             {{#each this.creatures}}
@@ -62,7 +62,7 @@
     <h2>Multicolor ({{multicolor_count}})</h2>
     {{#each multicolor_arrays}}
         {{#if this.cards.length}}
-            <h3>{{@key}} ({{this.cards.length}})</h3>
+            <h3>{{@key}} ({{this.cards.length}}{{#if ../main_board_selected}} from Main Board; {{lookup ../expected_extras @key}} from Rotations; {{lookup ../expected_totals @key}} in Total{{/if}})</h3>
             {{#each this.cards}}
                 <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
                     <img src="{{this.image}}">
@@ -74,7 +74,7 @@
 </div>
 
 <div class="color_container" id="colorless_container">
-    <h2>Colorless ({{colorless_arrays.cards.length}})</h2>
+    <h2>Colorless ({{colorless_arrays.cards.length}}{{#if main_board_selected}} from Main Board; {{expected_extras.colorless}} from Rotations; {{expected_totals.colorless}} in Total{{/if}})</h2>
     {{#if colorless_arrays.creatures.length}}
         <h3>Creatures ({{colorless_arrays.creatures.length}})</h3>
         {{#each colorless_arrays.creatures}}

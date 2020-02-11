@@ -237,11 +237,49 @@ function disablePrintChange() {
 }
 
 function submitPrintChange() {
-    var form = event.target.parentNode
-    form.children[3].value = event.target.children[event.target.selectedIndex].getAttribute("data-image")
-    if (event.target.children[event.target.selectedIndex].hasAttribute("data-back_image")) {
-        form.children[4].value = event.target.children[event.target.selectedIndex].getAttribute("data-back_image")
+    var childNames = []
+    var eventTarget = event.target
+    var form = eventTarget.parentNode
+    var { cube_id, cube_component } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+
+    for (var index = 0; index < form.children.length; index++) {
+        childNames.push(form.children[index].getAttribute("name"))
     }
-    form.children[5].value = event.target.children[event.target.selectedIndex].getAttribute("data-purchase_link")
-    form.submit()
+
+    form.children[childNames.indexOf("changed_image")].value = eventTarget.children[eventTarget.selectedIndex].getAttribute("data-image")
+    if (eventTarget.children[eventTarget.selectedIndex].hasAttribute("data-back_image")) {
+        form.children[childNames.indexOf("changed_back_image")].value = eventTarget.children[eventTarget.selectedIndex].getAttribute("data-back_image")
+    }
+    form.children[childNames.indexOf("changed_purchase_link")].value = eventTarget.children[eventTarget.selectedIndex].getAttribute("data-purchase_link")
+    
+    jQuery.ajax({
+        type: "POST",
+        url: '/cubes/edit-cube/change-set',
+        xhrFields: { withCredentials: true },
+        data: {
+            card_id: form.children[childNames.indexOf("card_id")].value,
+            changed_back_image: form.children[childNames.indexOf("changed_back_image")].value,
+            changed_image: form.children[childNames.indexOf("changed_image")].value,
+            changed_printing: form.children[childNames.indexOf("changed_printing")].value,
+            changed_purchase_link: form.children[childNames.indexOf("changed_purchase_link")].value,
+            cube_component: cube_component,
+            cube_id: cube_id
+        },
+        success: function() {
+            // update image(s)
+            form.parentNode.parentNode.children[0].children[1].src = form.children[childNames.indexOf("changed_image")].value
+            if (eventTarget[eventTarget.selectedIndex].hasAttribute("data-back_image")) {
+                form.parentNode.parentNode.children[0].children[2].src = form.children[childNames.indexOf("changed_back_image")].value
+            }
+            // disable print change
+            var lockButton = form.getElementsByTagName("button")[0]
+            lockButton.removeAttribute("onclick")
+            lockButton.setAttribute("onclick", "enablePrintChange()")
+            lockButton.innerHTML = '<i class="fas fa-lock"></i>'
+            lockButton.nextElementSibling.setAttribute("disabled", true)
+            form.getElementsByTagName("select")[0].value = form.children[childNames.indexOf("changed_printing")].value
+            form.getElementsByTagName("select")[0].setAttribute("data-currentSet", form.children[childNames.indexOf("changed_printing")].value)
+            form.getElementsByTagName("select")[0].innerHTML = '<option value=' + form.getElementsByTagName("select")[0].value + '>' + form.getElementsByTagName("select")[0].value + '</option>'
+        }
+    })
 }
