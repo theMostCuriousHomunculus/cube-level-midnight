@@ -57,19 +57,22 @@ app.get('/', authentication, async (req, res) => {
 // render the welcome page
 app.get('/welcome', async (req, res) => {
   res.render('welcome', {
-    title: 'Welcome'
+    title: 'Welcome',
+    js: ['welcome.js']
   })
 })
 
 app.get('/login', async (req, res) => {
   res.render('login', {
-    title: 'Login'
+    title: 'Login',
+    js: ['welcome.js']
   })
 })
 
 app.get('/register', async (req, res) => {
   res.render('register', {
-    title: 'Register'
+    title: 'Register',
+    js: ['welcome.js']
   })
 })
 

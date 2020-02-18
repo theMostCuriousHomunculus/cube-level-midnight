@@ -88,8 +88,12 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  <script src="/js/welcome.js"></script>
-{{!--  <script src="/js/image-preview.js"></script>
+  
+  {{#each js}}
+     <script src="/js/{{this}}"></script>
+ {{/each}}
+{{!--  <script src="/js/welcome.js"></script>
+  <script src="/js/image-preview.js"></script>
   <script src="/js/form-submissions.js"></script>
   <script src="/js/my-cubes.js"></script>
   <script src="/js/my-profile.js"></script>

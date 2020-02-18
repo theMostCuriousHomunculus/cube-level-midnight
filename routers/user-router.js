@@ -53,7 +53,8 @@ router.get('/users/my-profile', authentication, async (req, res) => {
     account_name: req.user.account_name,
     avatar: req.user.avatar,
     email: req.user.email,
-    title: 'My Profile'
+    title: 'My Profile',
+    js: ['my-profile.js']
   })
 })
 
