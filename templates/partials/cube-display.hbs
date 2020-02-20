@@ -5,7 +5,7 @@
             <h3>Creatures ({{this.creatures.length}})</h3>
             {{#each this.creatures}}
                 <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                    <img src="{{this.image}}">
+                    <img src="{{this.image}}" >
                     {{#if this.back_image}}<img src="{{this.back_image}}">{{/if}}
                 </p>
             {{/each}}
@@ -65,7 +65,7 @@
             <h3>{{@key}} ({{this.cards.length}}{{#if ../main_board_selected}} from Main Board; {{lookup ../expected_extras @key}} from Rotations; {{lookup ../expected_totals @key}} in Total{{/if}})</h3>
             {{#each this.cards}}
                 <p class="card_list" onmouseover="displayImage()" onmouseout="clearImage()">{{this.name}}
-                    <img src="{{this.image}}">
+                    <img src="{{this.image}}" id="card_image" style="display:none;">
                     {{#if this.back_image}}<img src="{{this.back_image}}">{{/if}}
                 </p>
             {{/each}}

@@ -141,7 +141,7 @@ router.get('/cubes/edit-cube', creatorAccess, async (req, res) => {
     sideboard_selected: sideboardSelected,
     skip: skip,
     title: 'Edit Cube',
-    js: []
+    js: ['scryfall-requests-ajax.js', 'image-preview.js' ]
   })
 })
 
@@ -578,7 +578,7 @@ router.get('/cubes/view-cube', creatorAccess, async (req, res) => {
     }),
     sideboard_selected: sideboardSelected,
     title: 'View Cube',
-    js: []
+    js: ['image-preview.js']
   })
 })
 
