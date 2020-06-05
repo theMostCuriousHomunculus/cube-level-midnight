@@ -72,6 +72,19 @@ router.post('/users/logout', authentication, async (req, res) => {
   }
 })
 
+router.get('/users/logout', authentication, async (req, res) => {
+  try {
+    req.user.tokens = req.user.tokens.filter((token) => {
+      return token.token !== req.cookies['auth_token']
+    })
+    await req.user.save()
+
+    res.redirect('/welcome')
+  } catch (e) {
+    res.status(500).send()
+  }
+})
+
 // Logout of all sessions
 router.post('/users/logout-all', authentication, async (req, res) => {
   try {

@@ -50,7 +50,9 @@ const draftRouter = require('../routers/draft-router')
 app.get('/', authentication, async (req, res) => {
   res.render('home', {
     account_name: req.user.account_name,
-    title: 'Home'
+    title: 'Home',
+    avatar: req.user.avatar,
+    js: ['welcome.js', 'jQuery.js', 'bootstrap.js']
   })
 })
 
@@ -58,7 +60,7 @@ app.get('/', authentication, async (req, res) => {
 app.get('/welcome', async (req, res) => {
   res.render('welcome', {
     title: 'Welcome',
-    js: ['welcome.js']
+    js: ['welcome.js', 'jQuery.js', 'bootstrap.js']
   })
 })
 
